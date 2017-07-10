@@ -10,7 +10,7 @@ import (
 )
 
 type InformacionPersonaJuridica struct {
-	Id                           int               `orm:"column(num_nit_empresa);pk"`
+	Id                           int64               `orm:"column(num_nit_empresa);pk"`
 	DigitoVerificacion           float64           `orm:"column(digito_verificacion)"`
 	ProcedenciaEmpresa           string            `orm:"column(procedencia_empresa)"`
 	IdCiudadOrigen               float64           `orm:"column(id_ciudad_origen);null"`
@@ -51,7 +51,7 @@ func AddInformacionPersonaJuridica(m *InformacionPersonaJuridica) (id int64, err
 
 // GetInformacionPersonaJuridicaById retrieves InformacionPersonaJuridica by Id. Returns error if
 // Id doesn't exist
-func GetInformacionPersonaJuridicaById(id int) (v *InformacionPersonaJuridica, err error) {
+func GetInformacionPersonaJuridicaById(id int64) (v *InformacionPersonaJuridica, err error) {
 	o := orm.NewOrm()
 	v = &InformacionPersonaJuridica{Id: id}
 	if err = o.Read(v); err == nil {
@@ -155,7 +155,7 @@ func UpdateInformacionPersonaJuridicaById(m *InformacionPersonaJuridica) (err er
 
 // DeleteInformacionPersonaJuridica deletes InformacionPersonaJuridica by Id and returns error if
 // the record to be deleted doesn't exist
-func DeleteInformacionPersonaJuridica(id int) (err error) {
+func DeleteInformacionPersonaJuridica(id int64) (err error) {
 	o := orm.NewOrm()
 	v := InformacionPersonaJuridica{Id: id}
 	// ascertain id exists in the database

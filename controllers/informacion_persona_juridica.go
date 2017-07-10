@@ -55,7 +55,7 @@ func (c *InformacionPersonaJuridicaController) Post() {
 // @router /:id [get]
 func (c *InformacionPersonaJuridicaController) GetOne() {
 	idStr := c.Ctx.Input.Param(":id")
-	id, _ := strconv.Atoi(idStr)
+	id, _ := strconv.ParseInt(idStr,10,64)
 	v, err := models.GetInformacionPersonaJuridicaById(id)
 	if err != nil {
 		c.Data["json"] = err.Error()
@@ -138,7 +138,7 @@ func (c *InformacionPersonaJuridicaController) GetAll() {
 // @router /:id [put]
 func (c *InformacionPersonaJuridicaController) Put() {
 	idStr := c.Ctx.Input.Param(":id")
-	id, _ := strconv.Atoi(idStr)
+	id, _ := strconv.ParseInt(idStr,10,64)
 	v := models.InformacionPersonaJuridica{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if err := models.UpdateInformacionPersonaJuridicaById(&v); err == nil {
@@ -161,7 +161,7 @@ func (c *InformacionPersonaJuridicaController) Put() {
 // @router /:id [delete]
 func (c *InformacionPersonaJuridicaController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
-	id, _ := strconv.Atoi(idStr)
+	id, _ := strconv.ParseInt(idStr,10,64)
 	if err := models.DeleteInformacionPersonaJuridica(id); err == nil {
 		c.Data["json"] = "OK"
 	} else {
