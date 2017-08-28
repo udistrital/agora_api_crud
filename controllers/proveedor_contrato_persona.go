@@ -28,7 +28,7 @@ func (c *ProveedorContratoPersonaController) ProveedorContratoPersona() {
 	respuesta := models.VigenciaProveedorContratoPersona(vigencia)
 	if len(respuesta) == 0 {
 		c.Ctx.Output.SetStatus(201)
-		c.Data["json"] = "Error leyendo los datos proveedor contrato persona natural"
+		c.Data["json"] = nil
 		c.ServeJSON()
 	} else {
 		c.Ctx.Output.SetStatus(201)
