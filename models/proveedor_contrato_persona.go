@@ -3,7 +3,6 @@ package models
 import (
 	"github.com/astaxie/beego/orm"
 	"time"
-	"fmt"
 )
 
 type ProveedorContratoPersona struct {
@@ -37,12 +36,12 @@ func init() {
 	orm.RegisterModel(new(ProveedorContratoPersona))
 }
 
-func VigenciaProveedorContratoPersona(vigencia string) (proveedor_contrato_persona []ProveedorContratoPersona) {
+func VigenciaProveedorContratoPersona(vigencia string) (proveedor_contrato_persona []ProveedorContratoPersona, err error) {
 	o := orm.NewOrm()
 	var temp []ProveedorContratoPersona
-	_, err := o.Raw("SELECT * FROM argo.contrato_general INNER JOIN agora.informacion_proveedor ON agora.informacion_proveedor.num_documento = argo.contrato_general.contratista INNER JOIN agora.informacion_persona_natural ON argo.contrato_general.contratista = agora.informacion_persona_natural.num_documento_persona WHERE vigencia="+vigencia+";").QueryRows(&temp)
+	_,err = o.Raw("SELECT * FROM argo.contrato_general INNER JOIN agora.informacion_proveedor ON agora.informacion_proveedor.num_documento = argo.contrato_general.contratista INNER JOIN agora.informacion_persona_natural ON argo.contrato_general.contratista = agora.informacion_persona_natural.num_documento_persona WHERE vigencia="+vigencia+";").QueryRows(&temp)
 	if err == nil {
-		fmt.Println("Consulta exitosa")
+		return temp,nil
 	}
-	return temp
+	return nil, err
 }
