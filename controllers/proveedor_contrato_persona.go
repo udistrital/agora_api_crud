@@ -25,16 +25,13 @@ func (c *ProveedorContratoPersonaController) URLMapping() {
 // @router /:vigencia [get]
 func (c *ProveedorContratoPersonaController) ProveedorContratoPersona() {
 	vigencia := c.Ctx.Input.Param(":vigencia")
-	respuesta := models.VigenciaProveedorContratoPersona(vigencia)
-	if len(respuesta) == 0 {
-		c.Ctx.Output.SetStatus(201)
-		c.Data["json"] = nil
-		c.ServeJSON()
+	respuesta, err := models.VigenciaProveedorContratoPersona(vigencia)
+	if err != nil{	
+		c.Data["json"] = err.Error()
 	} else {
-		c.Ctx.Output.SetStatus(201)
 		c.Data["json"] = respuesta
-		c.ServeJSON()
 	}
+	c.ServeJSON()
 }
 
 
