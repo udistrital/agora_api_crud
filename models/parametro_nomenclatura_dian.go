@@ -9,47 +9,48 @@ import (
 	"github.com/astaxie/beego/orm"
 )
 
-type NomenclaturaDian struct {
+type ParametroNomenclaturaDian struct {
 	Id           int    `orm:"column(id_nomenclatura);pk"`
 	Nomenclatura string `orm:"column(nomenclatura);null"`
 	Abreviatura  string `orm:"column(abreviatura);null"`
 	Descripcion  string `orm:"column(descripcion);null"`
 	Estado       string `orm:"column(estado);null"`
+	Tipo         int    `orm:"column(tipo);null"`
 }
 
-func (t *NomenclaturaDian) TableName() string {
-	return "nomenclatura_dian"
+func (t *ParametroNomenclaturaDian) TableName() string {
+	return "parametro_nomenclatura_dian"
 }
 
 func init() {
-	orm.RegisterModel(new(NomenclaturaDian))
+	orm.RegisterModel(new(ParametroNomenclaturaDian))
 }
 
-// AddNomenclaturaDian insert a new NomenclaturaDian into database and returns
+// AddParametroNomenclaturaDian insert a new ParametroNomenclaturaDian into database and returns
 // last inserted Id on success.
-func AddNomenclaturaDian(m *NomenclaturaDian) (id int64, err error) {
+func AddParametroNomenclaturaDian(m *ParametroNomenclaturaDian) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
 }
 
-// GetNomenclaturaDianById retrieves NomenclaturaDian by Id. Returns error if
+// GetParametroNomenclaturaDianById retrieves ParametroNomenclaturaDian by Id. Returns error if
 // Id doesn't exist
-func GetNomenclaturaDianById(id int) (v *NomenclaturaDian, err error) {
+func GetParametroNomenclaturaDianById(id int) (v *ParametroNomenclaturaDian, err error) {
 	o := orm.NewOrm()
-	v = &NomenclaturaDian{Id: id}
+	v = &ParametroNomenclaturaDian{Id: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
 	return nil, err
 }
 
-// GetAllNomenclaturaDian retrieves all NomenclaturaDian matches certain condition. Returns empty list if
+// GetAllParametroNomenclaturaDian retrieves all ParametroNomenclaturaDian matches certain condition. Returns empty list if
 // no records exist
-func GetAllNomenclaturaDian(query map[string]string, fields []string, sortby []string, order []string,
+func GetAllParametroNomenclaturaDian(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(NomenclaturaDian))
+	qs := o.QueryTable(new(ParametroNomenclaturaDian)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -99,7 +100,7 @@ func GetAllNomenclaturaDian(query map[string]string, fields []string, sortby []s
 		}
 	}
 
-	var l []NomenclaturaDian
+	var l []ParametroNomenclaturaDian
 	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
@@ -122,11 +123,11 @@ func GetAllNomenclaturaDian(query map[string]string, fields []string, sortby []s
 	return nil, err
 }
 
-// UpdateNomenclaturaDian updates NomenclaturaDian by Id and returns error if
+// UpdateParametroNomenclaturaDian updates ParametroNomenclaturaDian by Id and returns error if
 // the record to be updated doesn't exist
-func UpdateNomenclaturaDianById(m *NomenclaturaDian) (err error) {
+func UpdateParametroNomenclaturaDianById(m *ParametroNomenclaturaDian) (err error) {
 	o := orm.NewOrm()
-	v := NomenclaturaDian{Id: m.Id}
+	v := ParametroNomenclaturaDian{Id: m.Id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -137,15 +138,15 @@ func UpdateNomenclaturaDianById(m *NomenclaturaDian) (err error) {
 	return
 }
 
-// DeleteNomenclaturaDian deletes NomenclaturaDian by Id and returns error if
+// DeleteParametroNomenclaturaDian deletes ParametroNomenclaturaDian by Id and returns error if
 // the record to be deleted doesn't exist
-func DeleteNomenclaturaDian(id int) (err error) {
+func DeleteParametroNomenclaturaDian(id int) (err error) {
 	o := orm.NewOrm()
-	v := NomenclaturaDian{Id: id}
+	v := ParametroNomenclaturaDian{Id: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&NomenclaturaDian{Id: id}); err == nil {
+		if num, err = o.Delete(&ParametroNomenclaturaDian{Id: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}

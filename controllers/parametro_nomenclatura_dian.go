@@ -8,15 +8,16 @@ import (
 	"strings"
 
 	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/logs"
 )
 
-// NomenclaturaDianController operations for NomenclaturaDian
-type NomenclaturaDianController struct {
+// ParametroNomenclaturaDianController operations for ParametroNomenclaturaDian
+type ParametroNomenclaturaDianController struct {
 	beego.Controller
 }
 
 // URLMapping ...
-func (c *NomenclaturaDianController) URLMapping() {
+func (c *ParametroNomenclaturaDianController) URLMapping() {
 	c.Mapping("Post", c.Post)
 	c.Mapping("GetOne", c.GetOne)
 	c.Mapping("GetAll", c.GetAll)
@@ -26,15 +27,15 @@ func (c *NomenclaturaDianController) URLMapping() {
 
 // Post ...
 // @Title Post
-// @Description create NomenclaturaDian
-// @Param	body		body 	models.NomenclaturaDian	true		"body for NomenclaturaDian content"
-// @Success 201 {int} models.NomenclaturaDian
+// @Description create ParametroNomenclaturaDian
+// @Param	body		body 	models.ParametroNomenclaturaDian	true		"body for ParametroNomenclaturaDian content"
+// @Success 201 {int} models.ParametroNomenclaturaDian
 // @Failure 403 body is empty
 // @router / [post]
-func (c *NomenclaturaDianController) Post() {
-	var v models.NomenclaturaDian
+func (c *ParametroNomenclaturaDianController) Post() {
+	var v models.ParametroNomenclaturaDian
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if _, err := models.AddNomenclaturaDian(&v); err == nil {
+		if _, err := models.AddParametroNomenclaturaDian(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v
 		} else {
@@ -48,15 +49,15 @@ func (c *NomenclaturaDianController) Post() {
 
 // GetOne ...
 // @Title Get One
-// @Description get NomenclaturaDian by id
+// @Description get ParametroNomenclaturaDian by id
 // @Param	id		path 	string	true		"The key for staticblock"
-// @Success 200 {object} models.NomenclaturaDian
+// @Success 200 {object} models.ParametroNomenclaturaDian
 // @Failure 403 :id is empty
 // @router /:id [get]
-func (c *NomenclaturaDianController) GetOne() {
+func (c *ParametroNomenclaturaDianController) GetOne() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v, err := models.GetNomenclaturaDianById(id)
+	v, err := models.GetParametroNomenclaturaDianById(id)
 	if err != nil {
 		c.Data["json"] = err.Error()
 	} else {
@@ -67,17 +68,17 @@ func (c *NomenclaturaDianController) GetOne() {
 
 // GetAll ...
 // @Title Get All
-// @Description get NomenclaturaDian
+// @Description get ParametroNomenclaturaDian
 // @Param	query	query	string	false	"Filter. e.g. col1:v1,col2:v2 ..."
 // @Param	fields	query	string	false	"Fields returned. e.g. col1,col2 ..."
 // @Param	sortby	query	string	false	"Sorted-by fields. e.g. col1,col2 ..."
 // @Param	order	query	string	false	"Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ..."
 // @Param	limit	query	string	false	"Limit the size of result set. Must be an integer"
 // @Param	offset	query	string	false	"Start position of result set. Must be an integer"
-// @Success 200 {object} models.NomenclaturaDian
+// @Success 200 {object} models.ParametroNomenclaturaDian
 // @Failure 403
 // @router / [get]
-func (c *NomenclaturaDianController) GetAll() {
+func (c *ParametroNomenclaturaDianController) GetAll() {
 	var fields []string
 	var sortby []string
 	var order []string
@@ -119,29 +120,33 @@ func (c *NomenclaturaDianController) GetAll() {
 		}
 	}
 
-	l, err := models.GetAllNomenclaturaDian(query, fields, sortby, order, offset, limit)
+	l, err := models.GetAllParametroNomenclaturaDian(query, fields, sortby, order, offset, limit)
 	if err != nil {
-		c.Data["json"] = err.Error()
+		//c.Data["json"] = err.Error()
+		logs.Error(err)
+		c.Data["message"] = "Error service GetAll: The request contains an incorrect data type or an invalid parameter."
+		c.Abort("404")
 	} else {
-		c.Data["json"] = l
+		//c.Data["json"] = l
+		c.Data["json"] = map[string]interface{}{"Success": true, "Status": "200", "Message": "Request successful", "Data": l}
 	}
 	c.ServeJSON()
 }
 
 // Put ...
 // @Title Put
-// @Description update the NomenclaturaDian
+// @Description update the ParametroNomenclaturaDian
 // @Param	id		path 	string	true		"The id you want to update"
-// @Param	body		body 	models.NomenclaturaDian	true		"body for NomenclaturaDian content"
-// @Success 200 {object} models.NomenclaturaDian
+// @Param	body		body 	models.ParametroNomenclaturaDian	true		"body for ParametroNomenclaturaDian content"
+// @Success 200 {object} models.ParametroNomenclaturaDian
 // @Failure 403 :id is not int
 // @router /:id [put]
-func (c *NomenclaturaDianController) Put() {
+func (c *ParametroNomenclaturaDianController) Put() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v := models.NomenclaturaDian{Id: id}
+	v := models.ParametroNomenclaturaDian{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if err := models.UpdateNomenclaturaDianById(&v); err == nil {
+		if err := models.UpdateParametroNomenclaturaDianById(&v); err == nil {
 			c.Data["json"] = "OK"
 		} else {
 			c.Data["json"] = err.Error()
@@ -154,15 +159,15 @@ func (c *NomenclaturaDianController) Put() {
 
 // Delete ...
 // @Title Delete
-// @Description delete the NomenclaturaDian
+// @Description delete the ParametroNomenclaturaDian
 // @Param	id		path 	string	true		"The id you want to delete"
 // @Success 200 {string} delete success!
 // @Failure 403 id is empty
 // @router /:id [delete]
-func (c *NomenclaturaDianController) Delete() {
+func (c *ParametroNomenclaturaDianController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	if err := models.DeleteNomenclaturaDian(id); err == nil {
+	if err := models.DeleteParametroNomenclaturaDian(id); err == nil {
 		c.Data["json"] = "OK"
 	} else {
 		c.Data["json"] = err.Error()

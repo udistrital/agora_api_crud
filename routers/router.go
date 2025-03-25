@@ -64,9 +64,9 @@ func init() {
 			),
 		),
 
-		beego.NSNamespace("/nomenclatura_dian",
+		beego.NSNamespace("/parametro_nomenclatura_dian",
 			beego.NSInclude(
-				&controllers.NomenclaturaDianController{},
+				&controllers.ParametroNomenclaturaDianController{},
 			),
 		),
 
