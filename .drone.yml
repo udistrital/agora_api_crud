@@ -34,14 +34,7 @@ steps:
     tags:
       - ${DRONE_COMMIT:0:7}
       - ${DRONE_BRANCH}
-      - latest:
-          when:
-            branch:
-              - master
-      - release:
-          when:
-            branch:
-              - release/*
+      - release
   when:
     branch:
       - master
