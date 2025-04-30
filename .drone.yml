@@ -33,7 +33,6 @@ steps:
     repo: ${DRONE_REPO##udistrital/}
     tags:
       - ${DRONE_COMMIT:0:7}
-      - ${DRONE_BRANCH}
       - release
   when:
     branch:
