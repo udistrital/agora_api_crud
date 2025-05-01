@@ -21,6 +21,18 @@ steps:
     event:
       - push
 
+- name: set_tag
+  image: alpine
+  commands:
+    - |
+      if [[ "${DRONE_BRANCH}" == "master" ]]; then
+        echo "TAG=latest" >> tag.env
+      elif [[ "${DRONE_BRANCH}" == release/* ]]; then
+        echo "TAG=release" >> tag.env
+      else
+        echo "TAG=${DRONE_BRANCH}" >> tag.env
+    - cat tag.env
+
 - name: publish_to_ecr_release
   image: plugins/ecr
   settings:
@@ -33,7 +45,10 @@ steps:
     repo: ${DRONE_REPO##udistrital/}
     tags:
       - ${DRONE_COMMIT:0:7}
-      - release
+      - ${TAG}
+  environment:
+    TAG:
+      from_secret: TAG_ENV
   when:
     branch:
       - master
