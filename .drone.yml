@@ -51,6 +51,7 @@ steps:
     tags:
       - ${DRONE_COMMIT:0:7}
       - ${DRONE_BRANCH%%/*}
+      - ${DRONE_BRANCH/master/latest}
   when:
     branch:
       - master
