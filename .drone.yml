@@ -50,7 +50,7 @@ steps:
     repo: ${DRONE_REPO##udistrital/}
     tags:
       - ${DRONE_COMMIT:0:7}
-      - ${TAG}
+      - ${DRONE_BRANCH%%/*}
   when:
     branch:
       - master
