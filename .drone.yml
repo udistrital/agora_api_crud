@@ -31,6 +31,7 @@ steps:
         echo "export TAG=release" > tag.env
       fi
     - cat tag.env
+    - source tag.env
 
 - name: publish_to_ecr_release
   image: plugins/ecr
@@ -45,9 +46,6 @@ steps:
     tags:
       - ${DRONE_COMMIT:0:7}
       - ${TAG}
-  commands:
-    - source tag.env
-    - cat tag.env
   when:
     branch:
       - master
