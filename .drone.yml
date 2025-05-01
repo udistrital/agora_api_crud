@@ -26,9 +26,9 @@ steps:
   commands:
     - |
       if [[ "${DRONE_BRANCH}" == "master" ]]; then
-        echo "TAG=latest" >> tag.env
+        echo "export TAG=latest" > tag.env
       elif [[ "${DRONE_BRANCH}" == release/* ]]; then
-        echo "TAG=release" >> tag.env
+        echo "export TAG=release" > tag.env
       fi
     - cat tag.env
 
@@ -45,9 +45,9 @@ steps:
     tags:
       - ${DRONE_COMMIT:0:7}
       - ${TAG}
-  environment:
-    TAG:
-      from_secret: TAG_ENV
+  commands:
+    - source tag.env
+    - cat tag.env
   when:
     branch:
       - master
