@@ -29,8 +29,7 @@ steps:
         echo "TAG=latest" >> tag.env
       elif [[ "${DRONE_BRANCH}" == release/* ]]; then
         echo "TAG=release" >> tag.env
-      else
-        echo "TAG=${DRONE_BRANCH}" >> tag.env
+      fi
     - cat tag.env
 
 - name: publish_to_ecr_release
