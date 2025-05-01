@@ -6,6 +6,23 @@ workspace:
   path: src/github.com/${DRONE_REPO}
 
 steps:
+- name: set_tag
+  image: alpine
+  commands:
+    - |
+      if [[ "${DRONE_BRANCH}" == "master" ]]; then
+        echo "export TAG=latest" > tag.env
+      elif [[ "${DRONE_BRANCH}" == release/* ]]; then
+        echo "export TAG=release" > tag.env
+      fi
+    - cat tag.env
+    - source tag.env
+
+- name: get_tag
+  image: alpine
+  commands:
+    - echo $TAG
+
 - name: go_build
   image: golang:1.18
   commands:
@@ -20,18 +37,6 @@ steps:
       - master
     event:
       - push
-
-- name: set_tag
-  image: alpine
-  commands:
-    - |
-      if [[ "${DRONE_BRANCH}" == "master" ]]; then
-        echo "export TAG=latest" > tag.env
-      elif [[ "${DRONE_BRANCH}" == release/* ]]; then
-        echo "export TAG=release" > tag.env
-      fi
-    - cat tag.env
-    - source tag.env
 
 - name: publish_to_ecr_release
   image: plugins/ecr
