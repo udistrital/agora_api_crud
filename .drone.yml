@@ -70,6 +70,8 @@ steps:
       from_secret: AWS_ACCESS_KEY_ID
     aws_secret_access_key:
       from_secret: AWS_SECRET_ACCESS_KEY
-    image_name:
-      from_secret: ECR_REPOSITORY
+    image_name: $ECR_REPOSITORY
     image_tag: release
+  environment:
+    ECR_REPOSITORY:
+      from_secret: ECR_REPOSITORY
