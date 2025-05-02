@@ -6,24 +6,7 @@ workspace:
   path: src/github.com/${DRONE_REPO}
 
 steps:
-- name: set_tag
-  image: alpine
-  commands:
-    - |
-      if [[ "${DRONE_BRANCH}" == "master" ]]; then
-        echo "export TAG=latest" > tag.env
-      elif [[ "${DRONE_BRANCH}" == release/* ]]; then
-        echo "export TAG=release" > tag.env
-      fi
-    - cat tag.env
-    - source tag.env
-
-- name: get_tag
-  image: alpine
-  commands:
-    - echo $TAG
-
-- name: go_build
+- name: build
   image: golang:1.18
   commands:
     - go mod init
@@ -47,14 +30,30 @@ steps:
       from_secret: AWS_SECRET_ACCESS_KEY
     region:
       from_secret: AWS_REGION
-    repo: ${DRONE_REPO##udistrital/}
+    repo: ${DRONE_REPO_NAME}
     tags:
       - ${DRONE_COMMIT:0:7}
-      - ${DRONE_BRANCH%%/*}
-      - ${DRONE_BRANCH/master/latest}
+      - release
+  when:
+    branch:
+      - release/*
+    event:
+      - push
+
+- name: publish_to_ecr_prod
+  image: plugins/ecr
+  settings:
+    access_key:
+      from_secret: AWS_ACCESS_KEY_ID
+    secret_key:
+      from_secret: AWS_SECRET_ACCESS_KEY
+    region:
+      from_secret: AWS_REGION
+    repo: ${DRONE_REPO_NAME}
+    tags:
+      - ${DRONE_COMMIT:0:7}
   when:
     branch:
       - master
-      - release/*
     event:
       - push
