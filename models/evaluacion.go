@@ -12,7 +12,7 @@ import (
 
 type Evaluacion struct {
 	Id                     int       `orm:"column(id_evaluacion);pk"`
-	IdContrato             *Contrato `orm:"column(id_contrato);rel(fk)"`
+	IdContrato             int       `orm:"column(id_contrato)"`
 	FechaRegistro          time.Time `orm:"column(fecha_registro);type(date)"`
 	TiemoEntrega           string    `orm:"column(tiemo_entrega)"`
 	Cantidades             string    `orm:"column(cantidades)"`

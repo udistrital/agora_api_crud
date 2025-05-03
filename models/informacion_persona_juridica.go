@@ -10,27 +10,27 @@ import (
 )
 
 type InformacionPersonaJuridica struct {
-	Id                           int64               `orm:"column(num_nit_empresa);pk"`
-	DigitoVerificacion           float64           `orm:"column(digito_verificacion)"`
-	ProcedenciaEmpresa           string            `orm:"column(procedencia_empresa)"`
-	IdCiudadOrigen               float64           `orm:"column(id_ciudad_origen);null"`
-	CodigoPaisDian               float64           `orm:"column(codigo_pais_dian);null"`
-	CodigoPostal                 float64           `orm:"column(codigo_postal);null"`
-	TipoIdentificacionExtranjera string            `orm:"column(tipo_identificacion_extranjera);null"`
-	NumCedulaExtranjeria         float64           `orm:"column(num_cedula_extranjeria);null"`
-	NumPasaporte                 float64           `orm:"column(num_pasaporte);null"`
-	IdTipoConformacion           *TipoConformacion `orm:"column(id_tipo_conformacion);rel(fk)"`
-	MontoCapitalAutorizado       float64           `orm:"column(monto_capital_autorizado)"`
-	ExclusividadProducto         bool              `orm:"column(exclusividad_producto)"`
-	RegimenContributivo          string            `orm:"column(regimen_contributivo)"`
-	Pyme                         bool              `orm:"column(pyme)"`
-	RegistroMercantil            bool              `orm:"column(registro_mercantil)"`
-	SujetoRetencion              bool              `orm:"column(sujeto_retencion)"`
-	AgenteRetenedor              bool              `orm:"column(agente_retenedor)"`
-	ResponsableICA               bool              `orm:"column(responsable_ICA)"`
-	ResponsableIVA               bool              `orm:"column(responsable_IVA)"`
-	Genero                       string            `orm:"column(genero)"`
-	NomProveedor                 string            `orm:"column(nom_proveedor)"`
+	Id                           int64   `orm:"column(num_nit_empresa);pk"`
+	DigitoVerificacion           float64 `orm:"column(digito_verificacion)"`
+	ProcedenciaEmpresa           string  `orm:"column(procedencia_empresa)"`
+	IdCiudadOrigen               float64 `orm:"column(id_ciudad_origen);null"`
+	CodigoPaisDian               float64 `orm:"column(codigo_pais_dian);null"`
+	CodigoPostal                 float64 `orm:"column(codigo_postal);null"`
+	TipoIdentificacionExtranjera string  `orm:"column(tipo_identificacion_extranjera);null"`
+	NumCedulaExtranjeria         float64 `orm:"column(num_cedula_extranjeria);null"`
+	NumPasaporte                 float64 `orm:"column(num_pasaporte);null"`
+	IdTipoConformacion           int     `orm:"column(id_tipo_conformacion)"`
+	MontoCapitalAutorizado       float64 `orm:"column(monto_capital_autorizado)"`
+	ExclusividadProducto         bool    `orm:"column(exclusividad_producto)"`
+	RegimenContributivo          string  `orm:"column(regimen_contributivo)"`
+	Pyme                         bool    `orm:"column(pyme)"`
+	RegistroMercantil            bool    `orm:"column(registro_mercantil)"`
+	SujetoRetencion              bool    `orm:"column(sujeto_retencion)"`
+	AgenteRetenedor              bool    `orm:"column(agente_retenedor)"`
+	ResponsableICA               bool    `orm:"column(responsable_ICA)"`
+	ResponsableIVA               bool    `orm:"column(responsable_IVA)"`
+	Genero                       string  `orm:"column(genero)"`
+	NomProveedor                 string  `orm:"column(nom_proveedor)"`
 }
 
 func (t *InformacionPersonaJuridica) TableName() string {

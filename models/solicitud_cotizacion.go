@@ -11,7 +11,7 @@ import (
 
 type SolicitudCotizacion struct {
 	Id          int                   `orm:"column(id_soliciutd);pk"`
-	IdObjeto    *ObjetoContratar      `orm:"column(id_objeto);rel(fk)"`
+	IdObjeto    int                   `orm:"column(id_objeto)"`
 	IdProveedor *InformacionProveedor `orm:"column(id_proveedor);rel(fk)"`
 }
 

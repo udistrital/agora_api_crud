@@ -12,7 +12,7 @@ import (
 type InformacionInterventor struct {
 	Id            int                   `orm:"column(id_interventor);pk"`
 	IdProveedor   *InformacionProveedor `orm:"column(id_proveedor);rel(fk)"`
-	IdDependencia *ParametroDependencia `orm:"column(id_dependencia);rel(fk)"`
+	IdDependencia int                   `orm:"column(id_dependencia)"`
 	Estado        string                `orm:"column(estado);null"`
 }
 

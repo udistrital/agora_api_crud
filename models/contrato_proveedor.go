@@ -11,7 +11,7 @@ import (
 
 type ContratoProveedor struct {
 	Id          int                   `orm:"column(id_relacion);pk"`
-	IdContrato  *Contrato             `orm:"column(id_contrato);rel(fk)"`
+	IdContrato  int                   `orm:"column(id_contrato)"`
 	IdProveedor *InformacionProveedor `orm:"column(id_proveedor);rel(fk)"`
 	Vigencia    float64               `orm:"column(vigencia)"`
 }
