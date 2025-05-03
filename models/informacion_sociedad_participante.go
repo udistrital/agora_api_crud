@@ -10,8 +10,8 @@ import (
 )
 
 type InformacionSociedadParticipante struct {
-	Id                      int                          `orm:"column(id_participante);pk"`
-	IdSociedad              *InformacionSociedadTemporal `orm:"column(id_sociedad);rel(fk)"`
+	IdParticipante          int                          `orm:"column(id_participante);pk"`
+	IdProveedorSociedad     *InformacionSociedadTemporal `orm:"column(id_proveedor_sociedad);rel(fk)"`
 	IdContratista           *InformacionProveedor        `orm:"column(id_contratista);rel(fk)"`
 	PorcentajeParticipacion float64                      `orm:"column(porcentaje_participacion);null"`
 	Estado                  bool                         `orm:"column(estado);null"`
@@ -37,7 +37,7 @@ func AddInformacionSociedadParticipante(m *InformacionSociedadParticipante) (id 
 // Id doesn't exist
 func GetInformacionSociedadParticipanteById(id int) (v *InformacionSociedadParticipante, err error) {
 	o := orm.NewOrm()
-	v = &InformacionSociedadParticipante{Id: id}
+	v = &InformacionSociedadParticipante{IdParticipante: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
@@ -126,7 +126,7 @@ func GetAllInformacionSociedadParticipante(query map[string]string, fields []str
 // the record to be updated doesn't exist
 func UpdateInformacionSociedadParticipanteById(m *InformacionSociedadParticipante) (err error) {
 	o := orm.NewOrm()
-	v := InformacionSociedadParticipante{Id: m.Id}
+	v := InformacionSociedadParticipante{IdParticipante: m.IdParticipante}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -141,11 +141,11 @@ func UpdateInformacionSociedadParticipanteById(m *InformacionSociedadParticipant
 // the record to be deleted doesn't exist
 func DeleteInformacionSociedadParticipante(id int) (err error) {
 	o := orm.NewOrm()
-	v := InformacionSociedadParticipante{Id: id}
+	v := InformacionSociedadParticipante{IdParticipante: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&InformacionSociedadParticipante{Id: id}); err == nil {
+		if num, err = o.Delete(&InformacionSociedadParticipante{IdParticipante: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}

@@ -139,7 +139,7 @@ func (c *TelefonoController) GetAll() {
 func (c *TelefonoController) Put() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v := models.Telefono{Id: id}
+	v := models.Telefono{IdTelefono: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if err := models.UpdateTelefonoById(&v); err == nil {
 			c.Data["json"] = "OK"

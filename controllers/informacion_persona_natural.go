@@ -4,7 +4,6 @@ import (
 	"github.com/udistrital/agora_api_crud/models"
 	"encoding/json"
 	"errors"
-	"strconv"
 	"strings"
 
 	"github.com/astaxie/beego"
@@ -55,8 +54,7 @@ func (c *InformacionPersonaNaturalController) Post() {
 // @router /:id [get]
 func (c *InformacionPersonaNaturalController) GetOne() {
 	idStr := c.Ctx.Input.Param(":id")
-	id, _ := strconv.Atoi(idStr)
-	v, err := models.GetInformacionPersonaNaturalById(id)
+	v, err := models.GetInformacionPersonaNaturalById(idStr)
 	if err != nil {
 		c.Data["json"] = err.Error()
 	} else {
@@ -138,8 +136,7 @@ func (c *InformacionPersonaNaturalController) GetAll() {
 // @router /:id [put]
 func (c *InformacionPersonaNaturalController) Put() {
 	idStr := c.Ctx.Input.Param(":id")
-	id, _ := strconv.Atoi(idStr)
-	v := models.InformacionPersonaNatural{Id: id}
+	v := models.InformacionPersonaNatural{NumDocumentoPersona: idStr}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if err := models.UpdateInformacionPersonaNaturalById(&v); err == nil {
 			c.Data["json"] = "OK"
@@ -161,8 +158,7 @@ func (c *InformacionPersonaNaturalController) Put() {
 // @router /:id [delete]
 func (c *InformacionPersonaNaturalController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
-	id, _ := strconv.Atoi(idStr)
-	if err := models.DeleteInformacionPersonaNatural(id); err == nil {
+	if err := models.DeleteInformacionPersonaNatural(idStr); err == nil {
 		c.Data["json"] = "OK"
 	} else {
 		c.Data["json"] = err.Error()

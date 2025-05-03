@@ -10,10 +10,11 @@ import (
 )
 
 type ParametroEstandar struct {
-	Id                   int    `orm:"column(id_parametro);pk"`
+	IdParametro          int    `orm:"column(id_parametro);pk"`
 	ClaseParametro       string `orm:"column(clase_parametro);null"`
 	ValorParametro       string `orm:"column(valor_parametro)"`
 	DescripcionParametro string `orm:"column(descripcion_parametro);null"`
+	Abreviatura          string `orm:"column(abreviatura);null"`
 }
 
 func (t *ParametroEstandar) TableName() string {
@@ -36,7 +37,7 @@ func AddParametroEstandar(m *ParametroEstandar) (id int64, err error) {
 // Id doesn't exist
 func GetParametroEstandarById(id int) (v *ParametroEstandar, err error) {
 	o := orm.NewOrm()
-	v = &ParametroEstandar{Id: id}
+	v = &ParametroEstandar{IdParametro: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
@@ -125,7 +126,7 @@ func GetAllParametroEstandar(query map[string]string, fields []string, sortby []
 // the record to be updated doesn't exist
 func UpdateParametroEstandarById(m *ParametroEstandar) (err error) {
 	o := orm.NewOrm()
-	v := ParametroEstandar{Id: m.Id}
+	v := ParametroEstandar{IdParametro: m.IdParametro}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -140,11 +141,11 @@ func UpdateParametroEstandarById(m *ParametroEstandar) (err error) {
 // the record to be deleted doesn't exist
 func DeleteParametroEstandar(id int) (err error) {
 	o := orm.NewOrm()
-	v := ParametroEstandar{Id: id}
+	v := ParametroEstandar{IdParametro: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&ParametroEstandar{Id: id}); err == nil {
+		if num, err = o.Delete(&ParametroEstandar{IdParametro: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}

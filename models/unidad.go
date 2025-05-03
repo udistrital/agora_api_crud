@@ -10,9 +10,11 @@ import (
 )
 
 type Unidad struct {
-	Id     int    `orm:"column(id_unidad);pk"`
-	Unidad string `orm:"column(unidad)"`
-	Tipo   string `orm:"column(tipo)"`
+	Id          int    `orm:"column(id);pk"`
+	Unidad      string `orm:"column(unidad)"`
+	Tipo        string `orm:"column(tipo)"`
+	Descripcion string `orm:"column(descripcion);null"`
+	Estado      bool   `orm:"column(estado)"`
 }
 
 func (t *Unidad) TableName() string {

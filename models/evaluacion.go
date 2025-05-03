@@ -11,8 +11,8 @@ import (
 )
 
 type Evaluacion struct {
-	Id                     int       `orm:"column(id_evaluacion);pk"`
-	IdContrato             *Contrato `orm:"column(id_contrato);rel(fk)"`
+	IdEvaluacion           int       `orm:"column(id_evaluacion);pk"`
+	IdContrato             int       `orm:"column(id_contrato)"`
 	FechaRegistro          time.Time `orm:"column(fecha_registro);type(date)"`
 	TiemoEntrega           string    `orm:"column(tiemo_entrega)"`
 	Cantidades             string    `orm:"column(cantidades)"`
@@ -48,7 +48,7 @@ func AddEvaluacion(m *Evaluacion) (id int64, err error) {
 // Id doesn't exist
 func GetEvaluacionById(id int) (v *Evaluacion, err error) {
 	o := orm.NewOrm()
-	v = &Evaluacion{Id: id}
+	v = &Evaluacion{IdEvaluacion: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
@@ -137,7 +137,7 @@ func GetAllEvaluacion(query map[string]string, fields []string, sortby []string,
 // the record to be updated doesn't exist
 func UpdateEvaluacionById(m *Evaluacion) (err error) {
 	o := orm.NewOrm()
-	v := Evaluacion{Id: m.Id}
+	v := Evaluacion{IdEvaluacion: m.IdEvaluacion}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -152,11 +152,11 @@ func UpdateEvaluacionById(m *Evaluacion) (err error) {
 // the record to be deleted doesn't exist
 func DeleteEvaluacion(id int) (err error) {
 	o := orm.NewOrm()
-	v := Evaluacion{Id: id}
+	v := Evaluacion{IdEvaluacion: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&Evaluacion{Id: id}); err == nil {
+		if num, err = o.Delete(&Evaluacion{IdEvaluacion: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}
