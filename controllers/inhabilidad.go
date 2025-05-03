@@ -139,7 +139,7 @@ func (c *InhabilidadController) GetAll() {
 func (c *InhabilidadController) Put() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v := models.Inhabilidad{Id: id}
+	v := models.Inhabilidad{IdInhabilidad: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if err := models.UpdateInhabilidadById(&v); err == nil {
 			c.Data["json"] = "OK"

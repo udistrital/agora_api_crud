@@ -12,8 +12,8 @@ import (
 
 type InformacionPersonaNatural struct {
 	TipoDocumento                     *ParametroEstandar `orm:"column(tipo_documento);rel(fk)"`
-	Id                                int                `orm:"column(num_documento_persona);pk"`
-	DigitoVerificacion                float64            `orm:"column(digito_verificacion)"`
+	NumDocumentoPersona               string             `orm:"column(num_documento_persona);pk"`
+	DigitoVerificacion                float64            `orm:"column(digito_verificacion);null"`
 	PrimerApellido                    string             `orm:"column(primer_apellido)"`
 	SegundoApellido                   string             `orm:"column(segundo_apellido);null"`
 	PrimerNombre                      string             `orm:"column(primer_nombre)"`
@@ -26,7 +26,7 @@ type InformacionPersonaNatural struct {
 	MontoCapitalAutorizado            float64            `orm:"column(monto_capital_autorizado);null"`
 	Genero                            string             `orm:"column(genero);null"`
 	GrupoEtnico                       string             `orm:"column(grupo_etnico);null"`
-	ComunidadLgbt                     bool               `orm:"column(comunidad_lgbt)"`
+	ComunidadLgbt                     bool               `orm:"column(comunidad_lgbt);null"`
 	CabezaFamilia                     bool               `orm:"column(cabeza_familia)"`
 	PersonasACargo                    bool               `orm:"column(personas_a_cargo)"`
 	NumeroPersonasACargo              float64            `orm:"column(numero_personas_a_cargo);null"`
@@ -50,12 +50,26 @@ type InformacionPersonaNatural struct {
 	IdEps                             int                `orm:"column(id_eps);null"`
 	IdFondoPension                    int                `orm:"column(id_fondo_pension);null"`
 	IdCajaCompensacion                int                `orm:"column(id_caja_compensacion);null"`
-	IdNitArl                          float64            `orm:"column(id_nit_arl);null"`
-	IdNitEps                          float64            `orm:"column(id_nit_eps);null"`
-	IdNitFondoPension                 float64            `orm:"column(id_nit_fondo_pension);null"`
-	IdNitCajaCompensacion             float64            `orm:"column(id_nit_caja_compensacion);null"`
 	FechaExpedicionDocumento          time.Time          `orm:"column(fecha_expedicion_documento);type(date)"`
 	IdCiudadExpedicionDocumento       float64            `orm:"column(id_ciudad_expedicion_documento)"`
+	Hijos                             bool               `orm:"column(hijos)"`
+	NumeroHijos                       float64            `orm:"column(numero_hijos);null"`
+	Pensionado                        bool               `orm:"column(pensionado)"`
+	Anexohijos                        string             `orm:"column(anexohijos);null"`
+	Anexodeclaracion                  string             `orm:"column(anexodeclaracion);null"`
+	FechaNacimiento                   time.Time          `orm:"column(fecha_nacimiento);type(date);null"`
+	ValorAfc                          float64            `orm:"column(valor_afc);null"`
+	ResponsableIva                    bool               `orm:"column(responsable_iva);null"`
+	RecideColombia                    bool               `orm:"column(recide_colombia);null"`
+	PensionVoluntaria                 bool               `orm:"column(pension_voluntaria);null"`
+	ValorPensionVoluntaria            float64            `orm:"column(valor_pension_voluntaria);null"`
+	Migrante                          bool               `orm:"column(migrante);null"`
+	VictimaConflicto                  bool               `orm:"column(victima_conflicto);null"`
+	IdentidadGenero                   string             `orm:"column(identidad_genero);null"`
+	OrientacionSexual                 string             `orm:"column(orientacion_sexual);null"`
+	PersonaExpuesta                   bool               `orm:"column(persona_expuesta);null"`
+	ExperienciaLaboral                float64            `orm:"column(experiencia_laboral);null"`
+	ExperienciaProfesional            float64            `orm:"column(experiencia_profesional);null"`
 }
 
 func (t *InformacionPersonaNatural) TableName() string {
@@ -76,9 +90,9 @@ func AddInformacionPersonaNatural(m *InformacionPersonaNatural) (id int64, err e
 
 // GetInformacionPersonaNaturalById retrieves InformacionPersonaNatural by Id. Returns error if
 // Id doesn't exist
-func GetInformacionPersonaNaturalById(id int) (v *InformacionPersonaNatural, err error) {
+func GetInformacionPersonaNaturalById(id string) (v *InformacionPersonaNatural, err error) {
 	o := orm.NewOrm()
-	v = &InformacionPersonaNatural{Id: id}
+	v = &InformacionPersonaNatural{NumDocumentoPersona: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
@@ -167,7 +181,7 @@ func GetAllInformacionPersonaNatural(query map[string]string, fields []string, s
 // the record to be updated doesn't exist
 func UpdateInformacionPersonaNaturalById(m *InformacionPersonaNatural) (err error) {
 	o := orm.NewOrm()
-	v := InformacionPersonaNatural{Id: m.Id}
+	v := InformacionPersonaNatural{NumDocumentoPersona: m.NumDocumentoPersona}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -180,13 +194,13 @@ func UpdateInformacionPersonaNaturalById(m *InformacionPersonaNatural) (err erro
 
 // DeleteInformacionPersonaNatural deletes InformacionPersonaNatural by Id and returns error if
 // the record to be deleted doesn't exist
-func DeleteInformacionPersonaNatural(id int) (err error) {
+func DeleteInformacionPersonaNatural(id string) (err error) {
 	o := orm.NewOrm()
-	v := InformacionPersonaNatural{Id: id}
+	v := InformacionPersonaNatural{NumDocumentoPersona: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&InformacionPersonaNatural{Id: id}); err == nil {
+		if num, err = o.Delete(&InformacionPersonaNatural{NumDocumentoPersona: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}

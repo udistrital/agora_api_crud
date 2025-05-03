@@ -10,27 +10,27 @@ import (
 )
 
 type InformacionPersonaJuridica struct {
-	Id                           int64               `orm:"column(num_nit_empresa);pk"`
-	DigitoVerificacion           float64           `orm:"column(digito_verificacion)"`
-	ProcedenciaEmpresa           string            `orm:"column(procedencia_empresa)"`
-	IdCiudadOrigen               float64           `orm:"column(id_ciudad_origen);null"`
-	CodigoPaisDian               float64           `orm:"column(codigo_pais_dian);null"`
-	CodigoPostal                 float64           `orm:"column(codigo_postal);null"`
-	TipoIdentificacionExtranjera string            `orm:"column(tipo_identificacion_extranjera);null"`
-	NumCedulaExtranjeria         float64           `orm:"column(num_cedula_extranjeria);null"`
-	NumPasaporte                 float64           `orm:"column(num_pasaporte);null"`
-	IdTipoConformacion           *TipoConformacion `orm:"column(id_tipo_conformacion);rel(fk)"`
-	MontoCapitalAutorizado       float64           `orm:"column(monto_capital_autorizado)"`
-	ExclusividadProducto         bool              `orm:"column(exclusividad_producto)"`
-	RegimenContributivo          string            `orm:"column(regimen_contributivo)"`
-	Pyme                         bool              `orm:"column(pyme)"`
-	RegistroMercantil            bool              `orm:"column(registro_mercantil)"`
-	SujetoRetencion              bool              `orm:"column(sujeto_retencion)"`
-	AgenteRetenedor              bool              `orm:"column(agente_retenedor)"`
-	ResponsableICA               bool              `orm:"column(responsable_ICA)"`
-	ResponsableIVA               bool              `orm:"column(responsable_IVA)"`
-	Genero                       string            `orm:"column(genero)"`
-	NomProveedor                 string            `orm:"column(nom_proveedor)"`
+	NumNitEmpresa                string  `orm:"column(num_nit_empresa);pk"`
+	DigitoVerificacion           float64 `orm:"column(digito_verificacion);null"`
+	ProcedenciaEmpresa           string  `orm:"column(procedencia_empresa)"`
+	IdCiudadOrigen               float64 `orm:"column(id_ciudad_origen);null"`
+	CodigoPaisDian               float64 `orm:"column(codigo_pais_dian);null"`
+	CodigoPostal                 float64 `orm:"column(codigo_postal);null"`
+	TipoIdentificacionExtranjera string  `orm:"column(tipo_identificacion_extranjera);null"`
+	NumCedulaExtranjeria         string  `orm:"column(num_cedula_extranjeria);null"`
+	NumPasaporte                 string  `orm:"column(num_pasaporte);null"`
+	IdTipoConformacion           int     `orm:"column(id_tipo_conformacion)"`
+	MontoCapitalAutorizado       float64 `orm:"column(monto_capital_autorizado)"`
+	ExclusividadProducto         bool    `orm:"column(exclusividad_producto)"`
+	RegimenContributivo          string  `orm:"column(regimen_contributivo)"`
+	Pyme                         bool    `orm:"column(pyme)"`
+	RegistroMercantil            bool    `orm:"column(registro_mercantil)"`
+	SujetoRetencion              bool    `orm:"column(sujeto_retencion)"`
+	AgenteRetenedor              bool    `orm:"column(agente_retenedor)"`
+	ResponsableICA               bool    `orm:"column(responsable_ICA)"`
+	ResponsableIVA               bool    `orm:"column(responsable_IVA)"`
+	Genero                       string  `orm:"column(genero)"`
+	NomProveedor                 string  `orm:"column(nom_proveedor)"`
 }
 
 func (t *InformacionPersonaJuridica) TableName() string {
@@ -51,9 +51,9 @@ func AddInformacionPersonaJuridica(m *InformacionPersonaJuridica) (id int64, err
 
 // GetInformacionPersonaJuridicaById retrieves InformacionPersonaJuridica by Id. Returns error if
 // Id doesn't exist
-func GetInformacionPersonaJuridicaById(id int64) (v *InformacionPersonaJuridica, err error) {
+func GetInformacionPersonaJuridicaById(id string) (v *InformacionPersonaJuridica, err error) {
 	o := orm.NewOrm()
-	v = &InformacionPersonaJuridica{Id: id}
+	v = &InformacionPersonaJuridica{NumNitEmpresa: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
@@ -142,7 +142,7 @@ func GetAllInformacionPersonaJuridica(query map[string]string, fields []string, 
 // the record to be updated doesn't exist
 func UpdateInformacionPersonaJuridicaById(m *InformacionPersonaJuridica) (err error) {
 	o := orm.NewOrm()
-	v := InformacionPersonaJuridica{Id: m.Id}
+	v := InformacionPersonaJuridica{NumNitEmpresa: m.NumNitEmpresa}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -155,13 +155,13 @@ func UpdateInformacionPersonaJuridicaById(m *InformacionPersonaJuridica) (err er
 
 // DeleteInformacionPersonaJuridica deletes InformacionPersonaJuridica by Id and returns error if
 // the record to be deleted doesn't exist
-func DeleteInformacionPersonaJuridica(id int64) (err error) {
+func DeleteInformacionPersonaJuridica(id string) (err error) {
 	o := orm.NewOrm()
-	v := InformacionPersonaJuridica{Id: id}
+	v := InformacionPersonaJuridica{NumNitEmpresa: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&InformacionPersonaJuridica{Id: id}); err == nil {
+		if num, err = o.Delete(&InformacionPersonaJuridica{NumNitEmpresa: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}

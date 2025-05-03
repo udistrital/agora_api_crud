@@ -139,7 +139,7 @@ func (c *EvaluacionController) GetAll() {
 func (c *EvaluacionController) Put() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v := models.Evaluacion{Id: id}
+	v := models.Evaluacion{IdEvaluacion: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if err := models.UpdateEvaluacionById(&v); err == nil {
 			c.Data["json"] = "OK"

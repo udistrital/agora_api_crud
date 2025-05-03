@@ -46,21 +46,9 @@ func init() {
 			),
 		),
 
-		beego.NSNamespace("/contrato",
-			beego.NSInclude(
-				&controllers.ContratoController{},
-			),
-		),
-
 		beego.NSNamespace("/informacion_sociedad_temporal",
 			beego.NSInclude(
 				&controllers.InformacionSociedadTemporalController{},
-			),
-		),
-
-		beego.NSNamespace("/menu",
-			beego.NSInclude(
-				&controllers.MenuController{},
 			),
 		),
 
@@ -82,12 +70,6 @@ func init() {
 			),
 		),
 
-		beego.NSNamespace("/dependencia",
-			beego.NSInclude(
-				&controllers.DependenciaController{},
-			),
-		),
-
 		beego.NSNamespace("/informacion_interventor",
 			beego.NSInclude(
 				&controllers.InformacionInterventorController{},
@@ -100,18 +82,6 @@ func init() {
 			),
 		),
 
-		beego.NSNamespace("/objeto_contratar_actividad_ciiu",
-			beego.NSInclude(
-				&controllers.ObjetoContratarActividadCiiuController{},
-			),
-		),
-
-		beego.NSNamespace("/ordenador_gasto",
-			beego.NSInclude(
-				&controllers.OrdenadorGastoController{},
-			),
-		),
-
 		beego.NSNamespace("/proveedor_actividad_ciiu",
 			beego.NSInclude(
 				&controllers.ProveedorActividadCiiuController{},
@@ -121,12 +91,6 @@ func init() {
 		beego.NSNamespace("/solicitud_cotizacion",
 			beego.NSInclude(
 				&controllers.SolicitudCotizacionController{},
-			),
-		),
-
-		beego.NSNamespace("/parametro_dependencia",
-			beego.NSInclude(
-				&controllers.ParametroDependenciaController{},
 			),
 		),
 
@@ -148,27 +112,9 @@ func init() {
 			),
 		),
 
-		beego.NSNamespace("/snies_area",
-			beego.NSInclude(
-				&controllers.SniesAreaController{},
-			),
-		),
-
-		beego.NSNamespace("/tipo_conformacion",
-			beego.NSInclude(
-				&controllers.TipoConformacionController{},
-			),
-		),
-
 		beego.NSNamespace("/unidad",
 			beego.NSInclude(
 				&controllers.UnidadController{},
-			),
-		),
-
-		beego.NSNamespace("/objeto_contratar_nucleo_basico",
-			beego.NSInclude(
-				&controllers.ObjetoContratarNucleoBasicoController{},
 			),
 		),
 
@@ -184,35 +130,11 @@ func init() {
 			),
 		),
 
-		beego.NSNamespace("/snies_nucleo_basico",
-			beego.NSInclude(
-				&controllers.SniesNucleoBasicoController{},
-			),
-		),
-
-		beego.NSNamespace("/objeto_contratar",
-			beego.NSInclude(
-				&controllers.ObjetoContratarController{},
-			),
-		),
-
 		beego.NSNamespace("/informacion_sociedad_participante",
 			beego.NSInclude(
 				&controllers.InformacionSociedadParticipanteController{},
 			),
 		),
-
-		beego.NSNamespace("/supervisor",
-			beego.NSInclude(
-				&controllers.SupervisorController{},
-			),
-		),
-
-		beego.NSNamespace("/proveedor_contrato_persona",
-		beego.NSInclude(
-			&controllers.ProveedorContratoPersonaController{},
-		),
-	),
 	)
 	beego.AddNamespace(ns)
 }

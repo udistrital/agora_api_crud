@@ -139,7 +139,7 @@ func (c *InformacionProveedorController) GetAll() {
 func (c *InformacionProveedorController) Put() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v := models.InformacionProveedor{Id: id}
+	v := models.InformacionProveedor{IdProveedor: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if err := models.UpdateInformacionProveedorById(&v); err == nil {
 			c.Data["json"] = "OK"

@@ -125,120 +125,6 @@ paths:
           description: '{string} delete success!'
         "403":
           description: id is empty
-  /contrato/:
-    get:
-      tags:
-      - contrato
-      description: get Contrato
-      operationId: ContratoController.Get All
-      parameters:
-      - in: query
-        name: query
-        description: Filter. e.g. col1:v1,col2:v2 ...
-        type: string
-      - in: query
-        name: fields
-        description: Fields returned. e.g. col1,col2 ...
-        type: string
-      - in: query
-        name: sortby
-        description: Sorted-by fields. e.g. col1,col2 ...
-        type: string
-      - in: query
-        name: order
-        description: Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...
-        type: string
-      - in: query
-        name: limit
-        description: Limit the size of result set. Must be an integer
-        type: string
-      - in: query
-        name: offset
-        description: Start position of result set. Must be an integer
-        type: string
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.Contrato'
-        "403":
-          description: ""
-    post:
-      tags:
-      - contrato
-      description: create Contrato
-      operationId: ContratoController.Post
-      parameters:
-      - in: body
-        name: body
-        description: body for Contrato content
-        required: true
-        schema:
-          $ref: '#/definitions/models.Contrato'
-      responses:
-        "201":
-          description: '{int} models.Contrato'
-        "403":
-          description: body is empty
-  /contrato/{id}:
-    get:
-      tags:
-      - contrato
-      description: get Contrato by id
-      operationId: ContratoController.Get One
-      parameters:
-      - in: path
-        name: id
-        description: The key for staticblock
-        required: true
-        type: string
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.Contrato'
-        "403":
-          description: :id is empty
-    put:
-      tags:
-      - contrato
-      description: update the Contrato
-      operationId: ContratoController.Put
-      parameters:
-      - in: path
-        name: id
-        description: The id you want to update
-        required: true
-        type: string
-      - in: body
-        name: body
-        description: body for Contrato content
-        required: true
-        schema:
-          $ref: '#/definitions/models.Contrato'
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.Contrato'
-        "403":
-          description: :id is not int
-    delete:
-      tags:
-      - contrato
-      description: delete the Contrato
-      operationId: ContratoController.Delete
-      parameters:
-      - in: path
-        name: id
-        description: The id you want to delete
-        required: true
-        type: string
-      responses:
-        "200":
-          description: '{string} delete success!'
-        "403":
-          description: id is empty
   /contrato_evaluacion/:
     get:
       tags:
@@ -456,120 +342,6 @@ paths:
       - contrato_proveedor
       description: delete the ContratoProveedor
       operationId: ContratoProveedorController.Delete
-      parameters:
-      - in: path
-        name: id
-        description: The id you want to delete
-        required: true
-        type: string
-      responses:
-        "200":
-          description: '{string} delete success!'
-        "403":
-          description: id is empty
-  /dependencia/:
-    get:
-      tags:
-      - dependencia
-      description: get Dependencia
-      operationId: DependenciaController.Get All
-      parameters:
-      - in: query
-        name: query
-        description: Filter. e.g. col1:v1,col2:v2 ...
-        type: string
-      - in: query
-        name: fields
-        description: Fields returned. e.g. col1,col2 ...
-        type: string
-      - in: query
-        name: sortby
-        description: Sorted-by fields. e.g. col1,col2 ...
-        type: string
-      - in: query
-        name: order
-        description: Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...
-        type: string
-      - in: query
-        name: limit
-        description: Limit the size of result set. Must be an integer
-        type: string
-      - in: query
-        name: offset
-        description: Start position of result set. Must be an integer
-        type: string
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.Dependencia'
-        "403":
-          description: ""
-    post:
-      tags:
-      - dependencia
-      description: create Dependencia
-      operationId: DependenciaController.Post
-      parameters:
-      - in: body
-        name: body
-        description: body for Dependencia content
-        required: true
-        schema:
-          $ref: '#/definitions/models.Dependencia'
-      responses:
-        "201":
-          description: '{int} models.Dependencia'
-        "403":
-          description: body is empty
-  /dependencia/{id}:
-    get:
-      tags:
-      - dependencia
-      description: get Dependencia by id
-      operationId: DependenciaController.Get One
-      parameters:
-      - in: path
-        name: id
-        description: The key for staticblock
-        required: true
-        type: string
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.Dependencia'
-        "403":
-          description: :id is empty
-    put:
-      tags:
-      - dependencia
-      description: update the Dependencia
-      operationId: DependenciaController.Put
-      parameters:
-      - in: path
-        name: id
-        description: The id you want to update
-        required: true
-        type: string
-      - in: body
-        name: body
-        description: body for Dependencia content
-        required: true
-        schema:
-          $ref: '#/definitions/models.Dependencia'
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.Dependencia'
-        "403":
-          description: :id is not int
-    delete:
-      tags:
-      - dependencia
-      description: delete the Dependencia
-      operationId: DependenciaController.Delete
       parameters:
       - in: path
         name: id
@@ -1607,690 +1379,6 @@ paths:
           description: '{string} delete success!'
         "403":
           description: id is empty
-  /menu/:
-    get:
-      tags:
-      - menu
-      description: get Menu
-      operationId: MenuController.Get All
-      parameters:
-      - in: query
-        name: query
-        description: Filter. e.g. col1:v1,col2:v2 ...
-        type: string
-      - in: query
-        name: fields
-        description: Fields returned. e.g. col1,col2 ...
-        type: string
-      - in: query
-        name: sortby
-        description: Sorted-by fields. e.g. col1,col2 ...
-        type: string
-      - in: query
-        name: order
-        description: Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...
-        type: string
-      - in: query
-        name: limit
-        description: Limit the size of result set. Must be an integer
-        type: string
-      - in: query
-        name: offset
-        description: Start position of result set. Must be an integer
-        type: string
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.Menu'
-        "403":
-          description: ""
-    post:
-      tags:
-      - menu
-      description: create Menu
-      operationId: MenuController.Post
-      parameters:
-      - in: body
-        name: body
-        description: body for Menu content
-        required: true
-        schema:
-          $ref: '#/definitions/models.Menu'
-      responses:
-        "201":
-          description: '{int} models.Menu'
-        "403":
-          description: body is empty
-  /menu/{id}:
-    get:
-      tags:
-      - menu
-      description: get Menu by id
-      operationId: MenuController.Get One
-      parameters:
-      - in: path
-        name: id
-        description: The key for staticblock
-        required: true
-        type: string
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.Menu'
-        "403":
-          description: :id is empty
-    put:
-      tags:
-      - menu
-      description: update the Menu
-      operationId: MenuController.Put
-      parameters:
-      - in: path
-        name: id
-        description: The id you want to update
-        required: true
-        type: string
-      - in: body
-        name: body
-        description: body for Menu content
-        required: true
-        schema:
-          $ref: '#/definitions/models.Menu'
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.Menu'
-        "403":
-          description: :id is not int
-    delete:
-      tags:
-      - menu
-      description: delete the Menu
-      operationId: MenuController.Delete
-      parameters:
-      - in: path
-        name: id
-        description: The id you want to delete
-        required: true
-        type: string
-      responses:
-        "200":
-          description: '{string} delete success!'
-        "403":
-          description: id is empty
-  /objeto_contratar/:
-    get:
-      tags:
-      - objeto_contratar
-      description: get ObjetoContratar
-      operationId: ObjetoContratarController.Get All
-      parameters:
-      - in: query
-        name: query
-        description: Filter. e.g. col1:v1,col2:v2 ...
-        type: string
-      - in: query
-        name: fields
-        description: Fields returned. e.g. col1,col2 ...
-        type: string
-      - in: query
-        name: sortby
-        description: Sorted-by fields. e.g. col1,col2 ...
-        type: string
-      - in: query
-        name: order
-        description: Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...
-        type: string
-      - in: query
-        name: limit
-        description: Limit the size of result set. Must be an integer
-        type: string
-      - in: query
-        name: offset
-        description: Start position of result set. Must be an integer
-        type: string
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.ObjetoContratar'
-        "403":
-          description: ""
-    post:
-      tags:
-      - objeto_contratar
-      description: create ObjetoContratar
-      operationId: ObjetoContratarController.Post
-      parameters:
-      - in: body
-        name: body
-        description: body for ObjetoContratar content
-        required: true
-        schema:
-          $ref: '#/definitions/models.ObjetoContratar'
-      responses:
-        "201":
-          description: '{int} models.ObjetoContratar'
-        "403":
-          description: body is empty
-  /objeto_contratar/{id}:
-    get:
-      tags:
-      - objeto_contratar
-      description: get ObjetoContratar by id
-      operationId: ObjetoContratarController.Get One
-      parameters:
-      - in: path
-        name: id
-        description: The key for staticblock
-        required: true
-        type: string
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.ObjetoContratar'
-        "403":
-          description: :id is empty
-    put:
-      tags:
-      - objeto_contratar
-      description: update the ObjetoContratar
-      operationId: ObjetoContratarController.Put
-      parameters:
-      - in: path
-        name: id
-        description: The id you want to update
-        required: true
-        type: string
-      - in: body
-        name: body
-        description: body for ObjetoContratar content
-        required: true
-        schema:
-          $ref: '#/definitions/models.ObjetoContratar'
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.ObjetoContratar'
-        "403":
-          description: :id is not int
-    delete:
-      tags:
-      - objeto_contratar
-      description: delete the ObjetoContratar
-      operationId: ObjetoContratarController.Delete
-      parameters:
-      - in: path
-        name: id
-        description: The id you want to delete
-        required: true
-        type: string
-      responses:
-        "200":
-          description: '{string} delete success!'
-        "403":
-          description: id is empty
-  /objeto_contratar_actividad_ciiu/:
-    get:
-      tags:
-      - objeto_contratar_actividad_ciiu
-      description: get ObjetoContratarActividadCiiu
-      operationId: ObjetoContratarActividadCiiuController.Get All
-      parameters:
-      - in: query
-        name: query
-        description: Filter. e.g. col1:v1,col2:v2 ...
-        type: string
-      - in: query
-        name: fields
-        description: Fields returned. e.g. col1,col2 ...
-        type: string
-      - in: query
-        name: sortby
-        description: Sorted-by fields. e.g. col1,col2 ...
-        type: string
-      - in: query
-        name: order
-        description: Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...
-        type: string
-      - in: query
-        name: limit
-        description: Limit the size of result set. Must be an integer
-        type: string
-      - in: query
-        name: offset
-        description: Start position of result set. Must be an integer
-        type: string
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.ObjetoContratarActividadCiiu'
-        "403":
-          description: ""
-    post:
-      tags:
-      - objeto_contratar_actividad_ciiu
-      description: create ObjetoContratarActividadCiiu
-      operationId: ObjetoContratarActividadCiiuController.Post
-      parameters:
-      - in: body
-        name: body
-        description: body for ObjetoContratarActividadCiiu content
-        required: true
-        schema:
-          $ref: '#/definitions/models.ObjetoContratarActividadCiiu'
-      responses:
-        "201":
-          description: '{int} models.ObjetoContratarActividadCiiu'
-        "403":
-          description: body is empty
-  /objeto_contratar_actividad_ciiu/{id}:
-    get:
-      tags:
-      - objeto_contratar_actividad_ciiu
-      description: get ObjetoContratarActividadCiiu by id
-      operationId: ObjetoContratarActividadCiiuController.Get One
-      parameters:
-      - in: path
-        name: id
-        description: The key for staticblock
-        required: true
-        type: string
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.ObjetoContratarActividadCiiu'
-        "403":
-          description: :id is empty
-    put:
-      tags:
-      - objeto_contratar_actividad_ciiu
-      description: update the ObjetoContratarActividadCiiu
-      operationId: ObjetoContratarActividadCiiuController.Put
-      parameters:
-      - in: path
-        name: id
-        description: The id you want to update
-        required: true
-        type: string
-      - in: body
-        name: body
-        description: body for ObjetoContratarActividadCiiu content
-        required: true
-        schema:
-          $ref: '#/definitions/models.ObjetoContratarActividadCiiu'
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.ObjetoContratarActividadCiiu'
-        "403":
-          description: :id is not int
-    delete:
-      tags:
-      - objeto_contratar_actividad_ciiu
-      description: delete the ObjetoContratarActividadCiiu
-      operationId: ObjetoContratarActividadCiiuController.Delete
-      parameters:
-      - in: path
-        name: id
-        description: The id you want to delete
-        required: true
-        type: string
-      responses:
-        "200":
-          description: '{string} delete success!'
-        "403":
-          description: id is empty
-  /objeto_contratar_nucleo_basico/:
-    get:
-      tags:
-      - objeto_contratar_nucleo_basico
-      description: get ObjetoContratarNucleoBasico
-      operationId: ObjetoContratarNucleoBasicoController.Get All
-      parameters:
-      - in: query
-        name: query
-        description: Filter. e.g. col1:v1,col2:v2 ...
-        type: string
-      - in: query
-        name: fields
-        description: Fields returned. e.g. col1,col2 ...
-        type: string
-      - in: query
-        name: sortby
-        description: Sorted-by fields. e.g. col1,col2 ...
-        type: string
-      - in: query
-        name: order
-        description: Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...
-        type: string
-      - in: query
-        name: limit
-        description: Limit the size of result set. Must be an integer
-        type: string
-      - in: query
-        name: offset
-        description: Start position of result set. Must be an integer
-        type: string
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.ObjetoContratarNucleoBasico'
-        "403":
-          description: ""
-    post:
-      tags:
-      - objeto_contratar_nucleo_basico
-      description: create ObjetoContratarNucleoBasico
-      operationId: ObjetoContratarNucleoBasicoController.Post
-      parameters:
-      - in: body
-        name: body
-        description: body for ObjetoContratarNucleoBasico content
-        required: true
-        schema:
-          $ref: '#/definitions/models.ObjetoContratarNucleoBasico'
-      responses:
-        "201":
-          description: '{int} models.ObjetoContratarNucleoBasico'
-        "403":
-          description: body is empty
-  /objeto_contratar_nucleo_basico/{id}:
-    get:
-      tags:
-      - objeto_contratar_nucleo_basico
-      description: get ObjetoContratarNucleoBasico by id
-      operationId: ObjetoContratarNucleoBasicoController.Get One
-      parameters:
-      - in: path
-        name: id
-        description: The key for staticblock
-        required: true
-        type: string
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.ObjetoContratarNucleoBasico'
-        "403":
-          description: :id is empty
-    put:
-      tags:
-      - objeto_contratar_nucleo_basico
-      description: update the ObjetoContratarNucleoBasico
-      operationId: ObjetoContratarNucleoBasicoController.Put
-      parameters:
-      - in: path
-        name: id
-        description: The id you want to update
-        required: true
-        type: string
-      - in: body
-        name: body
-        description: body for ObjetoContratarNucleoBasico content
-        required: true
-        schema:
-          $ref: '#/definitions/models.ObjetoContratarNucleoBasico'
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.ObjetoContratarNucleoBasico'
-        "403":
-          description: :id is not int
-    delete:
-      tags:
-      - objeto_contratar_nucleo_basico
-      description: delete the ObjetoContratarNucleoBasico
-      operationId: ObjetoContratarNucleoBasicoController.Delete
-      parameters:
-      - in: path
-        name: id
-        description: The id you want to delete
-        required: true
-        type: string
-      responses:
-        "200":
-          description: '{string} delete success!'
-        "403":
-          description: id is empty
-  /ordenador_gasto/:
-    get:
-      tags:
-      - ordenador_gasto
-      description: get OrdenadorGasto
-      operationId: OrdenadorGastoController.Get All
-      parameters:
-      - in: query
-        name: query
-        description: Filter. e.g. col1:v1,col2:v2 ...
-        type: string
-      - in: query
-        name: fields
-        description: Fields returned. e.g. col1,col2 ...
-        type: string
-      - in: query
-        name: sortby
-        description: Sorted-by fields. e.g. col1,col2 ...
-        type: string
-      - in: query
-        name: order
-        description: Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...
-        type: string
-      - in: query
-        name: limit
-        description: Limit the size of result set. Must be an integer
-        type: string
-      - in: query
-        name: offset
-        description: Start position of result set. Must be an integer
-        type: string
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.OrdenadorGasto'
-        "403":
-          description: ""
-    post:
-      tags:
-      - ordenador_gasto
-      description: create OrdenadorGasto
-      operationId: OrdenadorGastoController.Post
-      parameters:
-      - in: body
-        name: body
-        description: body for OrdenadorGasto content
-        required: true
-        schema:
-          $ref: '#/definitions/models.OrdenadorGasto'
-      responses:
-        "201":
-          description: '{int} models.OrdenadorGasto'
-        "403":
-          description: body is empty
-  /ordenador_gasto/{id}:
-    get:
-      tags:
-      - ordenador_gasto
-      description: get OrdenadorGasto by id
-      operationId: OrdenadorGastoController.Get One
-      parameters:
-      - in: path
-        name: id
-        description: The key for staticblock
-        required: true
-        type: string
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.OrdenadorGasto'
-        "403":
-          description: :id is empty
-    put:
-      tags:
-      - ordenador_gasto
-      description: update the OrdenadorGasto
-      operationId: OrdenadorGastoController.Put
-      parameters:
-      - in: path
-        name: id
-        description: The id you want to update
-        required: true
-        type: string
-      - in: body
-        name: body
-        description: body for OrdenadorGasto content
-        required: true
-        schema:
-          $ref: '#/definitions/models.OrdenadorGasto'
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.OrdenadorGasto'
-        "403":
-          description: :id is not int
-    delete:
-      tags:
-      - ordenador_gasto
-      description: delete the OrdenadorGasto
-      operationId: OrdenadorGastoController.Delete
-      parameters:
-      - in: path
-        name: id
-        description: The id you want to delete
-        required: true
-        type: string
-      responses:
-        "200":
-          description: '{string} delete success!'
-        "403":
-          description: id is empty
-  /parametro_dependencia/:
-    get:
-      tags:
-      - parametro_dependencia
-      description: get ParametroDependencia
-      operationId: ParametroDependenciaController.Get All
-      parameters:
-      - in: query
-        name: query
-        description: Filter. e.g. col1:v1,col2:v2 ...
-        type: string
-      - in: query
-        name: fields
-        description: Fields returned. e.g. col1,col2 ...
-        type: string
-      - in: query
-        name: sortby
-        description: Sorted-by fields. e.g. col1,col2 ...
-        type: string
-      - in: query
-        name: order
-        description: Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...
-        type: string
-      - in: query
-        name: limit
-        description: Limit the size of result set. Must be an integer
-        type: string
-      - in: query
-        name: offset
-        description: Start position of result set. Must be an integer
-        type: string
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.ParametroDependencia'
-        "403":
-          description: ""
-    post:
-      tags:
-      - parametro_dependencia
-      description: create ParametroDependencia
-      operationId: ParametroDependenciaController.Post
-      parameters:
-      - in: body
-        name: body
-        description: body for ParametroDependencia content
-        required: true
-        schema:
-          $ref: '#/definitions/models.ParametroDependencia'
-      responses:
-        "201":
-          description: '{int} models.ParametroDependencia'
-        "403":
-          description: body is empty
-  /parametro_dependencia/{id}:
-    get:
-      tags:
-      - parametro_dependencia
-      description: get ParametroDependencia by id
-      operationId: ParametroDependenciaController.Get One
-      parameters:
-      - in: path
-        name: id
-        description: The key for staticblock
-        required: true
-        type: string
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.ParametroDependencia'
-        "403":
-          description: :id is empty
-    put:
-      tags:
-      - parametro_dependencia
-      description: update the ParametroDependencia
-      operationId: ParametroDependenciaController.Put
-      parameters:
-      - in: path
-        name: id
-        description: The id you want to update
-        required: true
-        type: string
-      - in: body
-        name: body
-        description: body for ParametroDependencia content
-        required: true
-        schema:
-          $ref: '#/definitions/models.ParametroDependencia'
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.ParametroDependencia'
-        "403":
-          description: :id is not int
-    delete:
-      tags:
-      - parametro_dependencia
-      description: delete the ParametroDependencia
-      operationId: ParametroDependenciaController.Delete
-      parameters:
-      - in: path
-        name: id
-        description: The id you want to delete
-        required: true
-        type: string
-      responses:
-        "200":
-          description: '{string} delete success!'
-        "403":
-          description: id is empty
   /parametro_estandar/:
     get:
       tags:
@@ -2633,24 +1721,6 @@ paths:
           description: '{string} delete success!'
         "403":
           description: id is empty
-  /proveedor_contrato_persona/{vigencia}:
-    get:
-      tags:
-      - proveedor_contrato_persona
-      description: create ProveedorContratoPersona
-      operationId: ProveedorContratoPersonaController.ProveedorContratoPersona
-      parameters:
-      - in: body
-        name: body
-        description: body for ProveedorContratoPersona content
-        required: true
-        schema:
-          $ref: '#/definitions/models.ProveedorContratoPersona'
-      responses:
-        "201":
-          description: '{int} models.ProveedorContratoPersona'
-        "403":
-          description: body is empty
   /proveedor_representante_legal/:
     get:
       tags:
@@ -2879,234 +1949,6 @@ paths:
           description: '{string} delete success!'
         "403":
           description: id is empty
-  /snies_area/:
-    get:
-      tags:
-      - snies_area
-      description: get SniesArea
-      operationId: SniesAreaController.Get All
-      parameters:
-      - in: query
-        name: query
-        description: Filter. e.g. col1:v1,col2:v2 ...
-        type: string
-      - in: query
-        name: fields
-        description: Fields returned. e.g. col1,col2 ...
-        type: string
-      - in: query
-        name: sortby
-        description: Sorted-by fields. e.g. col1,col2 ...
-        type: string
-      - in: query
-        name: order
-        description: Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...
-        type: string
-      - in: query
-        name: limit
-        description: Limit the size of result set. Must be an integer
-        type: string
-      - in: query
-        name: offset
-        description: Start position of result set. Must be an integer
-        type: string
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.SniesArea'
-        "403":
-          description: ""
-    post:
-      tags:
-      - snies_area
-      description: create SniesArea
-      operationId: SniesAreaController.Post
-      parameters:
-      - in: body
-        name: body
-        description: body for SniesArea content
-        required: true
-        schema:
-          $ref: '#/definitions/models.SniesArea'
-      responses:
-        "201":
-          description: '{int} models.SniesArea'
-        "403":
-          description: body is empty
-  /snies_area/{id}:
-    get:
-      tags:
-      - snies_area
-      description: get SniesArea by id
-      operationId: SniesAreaController.Get One
-      parameters:
-      - in: path
-        name: id
-        description: The key for staticblock
-        required: true
-        type: string
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.SniesArea'
-        "403":
-          description: :id is empty
-    put:
-      tags:
-      - snies_area
-      description: update the SniesArea
-      operationId: SniesAreaController.Put
-      parameters:
-      - in: path
-        name: id
-        description: The id you want to update
-        required: true
-        type: string
-      - in: body
-        name: body
-        description: body for SniesArea content
-        required: true
-        schema:
-          $ref: '#/definitions/models.SniesArea'
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.SniesArea'
-        "403":
-          description: :id is not int
-    delete:
-      tags:
-      - snies_area
-      description: delete the SniesArea
-      operationId: SniesAreaController.Delete
-      parameters:
-      - in: path
-        name: id
-        description: The id you want to delete
-        required: true
-        type: string
-      responses:
-        "200":
-          description: '{string} delete success!'
-        "403":
-          description: id is empty
-  /snies_nucleo_basico/:
-    get:
-      tags:
-      - snies_nucleo_basico
-      description: get SniesNucleoBasico
-      operationId: SniesNucleoBasicoController.Get All
-      parameters:
-      - in: query
-        name: query
-        description: Filter. e.g. col1:v1,col2:v2 ...
-        type: string
-      - in: query
-        name: fields
-        description: Fields returned. e.g. col1,col2 ...
-        type: string
-      - in: query
-        name: sortby
-        description: Sorted-by fields. e.g. col1,col2 ...
-        type: string
-      - in: query
-        name: order
-        description: Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...
-        type: string
-      - in: query
-        name: limit
-        description: Limit the size of result set. Must be an integer
-        type: string
-      - in: query
-        name: offset
-        description: Start position of result set. Must be an integer
-        type: string
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.SniesNucleoBasico'
-        "403":
-          description: ""
-    post:
-      tags:
-      - snies_nucleo_basico
-      description: create SniesNucleoBasico
-      operationId: SniesNucleoBasicoController.Post
-      parameters:
-      - in: body
-        name: body
-        description: body for SniesNucleoBasico content
-        required: true
-        schema:
-          $ref: '#/definitions/models.SniesNucleoBasico'
-      responses:
-        "201":
-          description: '{int} models.SniesNucleoBasico'
-        "403":
-          description: body is empty
-  /snies_nucleo_basico/{id}:
-    get:
-      tags:
-      - snies_nucleo_basico
-      description: get SniesNucleoBasico by id
-      operationId: SniesNucleoBasicoController.Get One
-      parameters:
-      - in: path
-        name: id
-        description: The key for staticblock
-        required: true
-        type: string
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.SniesNucleoBasico'
-        "403":
-          description: :id is empty
-    put:
-      tags:
-      - snies_nucleo_basico
-      description: update the SniesNucleoBasico
-      operationId: SniesNucleoBasicoController.Put
-      parameters:
-      - in: path
-        name: id
-        description: The id you want to update
-        required: true
-        type: string
-      - in: body
-        name: body
-        description: body for SniesNucleoBasico content
-        required: true
-        schema:
-          $ref: '#/definitions/models.SniesNucleoBasico'
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.SniesNucleoBasico'
-        "403":
-          description: :id is not int
-    delete:
-      tags:
-      - snies_nucleo_basico
-      description: delete the SniesNucleoBasico
-      operationId: SniesNucleoBasicoController.Delete
-      parameters:
-      - in: path
-        name: id
-        description: The id you want to delete
-        required: true
-        type: string
-      responses:
-        "200":
-          description: '{string} delete success!'
-        "403":
-          description: id is empty
   /solicitud_cotizacion/:
     get:
       tags:
@@ -3221,120 +2063,6 @@ paths:
           description: '{string} delete success!'
         "403":
           description: id is empty
-  /supervisor/:
-    get:
-      tags:
-      - supervisor
-      description: get Supervisor
-      operationId: SupervisorController.Get All
-      parameters:
-      - in: query
-        name: query
-        description: Filter. e.g. col1:v1,col2:v2 ...
-        type: string
-      - in: query
-        name: fields
-        description: Fields returned. e.g. col1,col2 ...
-        type: string
-      - in: query
-        name: sortby
-        description: Sorted-by fields. e.g. col1,col2 ...
-        type: string
-      - in: query
-        name: order
-        description: Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...
-        type: string
-      - in: query
-        name: limit
-        description: Limit the size of result set. Must be an integer
-        type: string
-      - in: query
-        name: offset
-        description: Start position of result set. Must be an integer
-        type: string
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.Supervisor'
-        "403":
-          description: ""
-    post:
-      tags:
-      - supervisor
-      description: create Supervisor
-      operationId: SupervisorController.Post
-      parameters:
-      - in: body
-        name: body
-        description: body for Supervisor content
-        required: true
-        schema:
-          $ref: '#/definitions/models.Supervisor'
-      responses:
-        "201":
-          description: '{int} models.Supervisor'
-        "403":
-          description: body is empty
-  /supervisor/{id}:
-    get:
-      tags:
-      - supervisor
-      description: get Supervisor by id
-      operationId: SupervisorController.Get One
-      parameters:
-      - in: path
-        name: id
-        description: The key for staticblock
-        required: true
-        type: string
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.Supervisor'
-        "403":
-          description: :id is empty
-    put:
-      tags:
-      - supervisor
-      description: update the Supervisor
-      operationId: SupervisorController.Put
-      parameters:
-      - in: path
-        name: id
-        description: The id you want to update
-        required: true
-        type: string
-      - in: body
-        name: body
-        description: body for Supervisor content
-        required: true
-        schema:
-          $ref: '#/definitions/models.Supervisor'
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.Supervisor'
-        "403":
-          description: :id is not int
-    delete:
-      tags:
-      - supervisor
-      description: delete the Supervisor
-      operationId: SupervisorController.Delete
-      parameters:
-      - in: path
-        name: id
-        description: The id you want to delete
-        required: true
-        type: string
-      responses:
-        "200":
-          description: '{string} delete success!'
-        "403":
-          description: id is empty
   /telefono/:
     get:
       tags:
@@ -3438,120 +2166,6 @@ paths:
       - telefono
       description: delete the Telefono
       operationId: TelefonoController.Delete
-      parameters:
-      - in: path
-        name: id
-        description: The id you want to delete
-        required: true
-        type: string
-      responses:
-        "200":
-          description: '{string} delete success!'
-        "403":
-          description: id is empty
-  /tipo_conformacion/:
-    get:
-      tags:
-      - tipo_conformacion
-      description: get TipoConformacion
-      operationId: TipoConformacionController.Get All
-      parameters:
-      - in: query
-        name: query
-        description: Filter. e.g. col1:v1,col2:v2 ...
-        type: string
-      - in: query
-        name: fields
-        description: Fields returned. e.g. col1,col2 ...
-        type: string
-      - in: query
-        name: sortby
-        description: Sorted-by fields. e.g. col1,col2 ...
-        type: string
-      - in: query
-        name: order
-        description: Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...
-        type: string
-      - in: query
-        name: limit
-        description: Limit the size of result set. Must be an integer
-        type: string
-      - in: query
-        name: offset
-        description: Start position of result set. Must be an integer
-        type: string
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.TipoConformacion'
-        "403":
-          description: ""
-    post:
-      tags:
-      - tipo_conformacion
-      description: create TipoConformacion
-      operationId: TipoConformacionController.Post
-      parameters:
-      - in: body
-        name: body
-        description: body for TipoConformacion content
-        required: true
-        schema:
-          $ref: '#/definitions/models.TipoConformacion'
-      responses:
-        "201":
-          description: '{int} models.TipoConformacion'
-        "403":
-          description: body is empty
-  /tipo_conformacion/{id}:
-    get:
-      tags:
-      - tipo_conformacion
-      description: get TipoConformacion by id
-      operationId: TipoConformacionController.Get One
-      parameters:
-      - in: path
-        name: id
-        description: The key for staticblock
-        required: true
-        type: string
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.TipoConformacion'
-        "403":
-          description: :id is empty
-    put:
-      tags:
-      - tipo_conformacion
-      description: update the TipoConformacion
-      operationId: TipoConformacionController.Put
-      parameters:
-      - in: path
-        name: id
-        description: The id you want to update
-        required: true
-        type: string
-      - in: body
-        name: body
-        description: body for TipoConformacion content
-        required: true
-        schema:
-          $ref: '#/definitions/models.TipoConformacion'
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.TipoConformacion'
-        "403":
-          description: :id is not int
-    delete:
-      tags:
-      - tipo_conformacion
-      description: delete the TipoConformacion
-      operationId: TipoConformacionController.Delete
       parameters:
       - in: path
         name: id
@@ -3685,38 +2299,13 @@ definitions:
       Fecha:
         type: string
         format: datetime
-      Id:
+      IdCodigoValidacion:
         type: integer
         format: int64
       IdTabla:
-        type: number
-        format: double
-      TipoCertificacion:
-        type: number
-        format: double
-  models.Contrato:
-    title: Contrato
-    type: object
-    properties:
-      Estado:
-        type: string
-      FechaRegistro:
-        type: string
-        format: datetime
-      Id:
         type: integer
         format: int64
-      IdObjeto:
-        $ref: '#/definitions/models.ObjetoContratar'
-      IdSupervisor:
-        $ref: '#/definitions/models.Supervisor'
-      NumeroContrato:
-        type: number
-        format: double
-      UnidadEjecutora:
-        type: number
-        format: double
-      Vigencia:
+      TipoCertificacion:
         type: number
         format: double
   models.ContratoEvaluacion:
@@ -3724,14 +2313,13 @@ definitions:
     type: object
     properties:
       DocumentoEvaluador:
-        type: number
-        format: double
+        type: string
       Estado:
         type: string
       FechaRegistro:
         type: string
         format: datetime
-      Id:
+      IdContrato:
         type: integer
         format: int64
       NumeroContrato:
@@ -3750,27 +2338,17 @@ definitions:
     title: ContratoProveedor
     type: object
     properties:
-      Id:
+      IdContrato:
         type: integer
         format: int64
-      IdContrato:
-        $ref: '#/definitions/models.Contrato'
       IdProveedor:
         $ref: '#/definitions/models.InformacionProveedor'
+      IdRelacion:
+        type: integer
+        format: int64
       Vigencia:
         type: number
         format: double
-  models.Dependencia:
-    title: Dependencia
-    type: object
-    properties:
-      Correo:
-        type: string
-      Dependencia:
-        type: string
-      Id:
-        type: integer
-        format: int64
   models.Evaluacion:
     title: Evaluacion
     type: object
@@ -3790,11 +2368,12 @@ definitions:
         type: string
       GarantiaSatisfaccion:
         type: string
-      Id:
+      IdContrato:
         type: integer
         format: int64
-      IdContrato:
-        $ref: '#/definitions/models.Contrato'
+      IdEvaluacion:
+        type: integer
+        format: int64
       Procedimientos:
         type: string
       PuntajeTotal:
@@ -3814,11 +2393,12 @@ definitions:
     properties:
       Estado:
         type: string
-      Id:
+      IdDependencia:
         type: integer
         format: int64
-      IdDependencia:
-        $ref: '#/definitions/models.ParametroDependencia'
+      IdInterventor:
+        type: integer
+        format: int64
       IdProveedor:
         $ref: '#/definitions/models.InformacionProveedor'
   models.InformacionPersonaJuridica:
@@ -3840,25 +2420,23 @@ definitions:
         type: boolean
       Genero:
         type: string
-      Id:
-        type: integer
-        format: int64
       IdCiudadOrigen:
         type: number
         format: double
       IdTipoConformacion:
-        $ref: '#/definitions/models.TipoConformacion'
+        type: integer
+        format: int64
       MontoCapitalAutorizado:
         type: number
         format: double
       NomProveedor:
         type: string
       NumCedulaExtranjeria:
-        type: number
-        format: double
+        type: string
+      NumNitEmpresa:
+        type: string
       NumPasaporte:
-        type: number
-        format: double
+        type: string
       ProcedenciaEmpresa:
         type: string
       Pyme:
@@ -3879,6 +2457,10 @@ definitions:
     title: InformacionPersonaNatural
     type: object
     properties:
+      Anexodeclaracion:
+        type: string
+      Anexohijos:
+        type: string
       CabezaFamilia:
         type: boolean
       Cargo:
@@ -3908,16 +2490,24 @@ definitions:
         type: string
       EstadoCivil:
         type: string
+      ExperienciaLaboral:
+        type: number
+        format: double
+      ExperienciaProfesional:
+        type: number
+        format: double
       FechaExpedicionDocumento:
+        type: string
+        format: datetime
+      FechaNacimiento:
         type: string
         format: datetime
       Genero:
         type: string
       GrupoEtnico:
         type: string
-      Id:
-        type: integer
-        format: int64
+      Hijos:
+        type: boolean
       IdArl:
         type: integer
         format: int64
@@ -3936,39 +2526,44 @@ definitions:
       IdFondoPension:
         type: integer
         format: int64
-      IdNitArl:
-        type: number
-        format: double
-      IdNitCajaCompensacion:
-        type: number
-        format: double
-      IdNitEps:
-        type: number
-        format: double
-      IdNitFondoPension:
-        type: number
-        format: double
       IdNucleoBasico:
         type: number
         format: double
       IdPaisNacimiento:
         type: number
         format: double
+      IdentidadGenero:
+        type: string
       InteresViviendaAfc:
         type: number
         format: double
       MedicinaPrepagada:
+        type: boolean
+      Migrante:
         type: boolean
       MontoCapitalAutorizado:
         type: number
         format: double
       NumCuentaBancariaAfc:
         type: string
+      NumDocumentoPersona:
+        type: string
+      NumeroHijos:
+        type: number
+        format: double
       NumeroPersonasACargo:
         type: number
         format: double
+      OrientacionSexual:
+        type: string
+      PensionVoluntaria:
+        type: boolean
+      Pensionado:
+        type: boolean
       Perfil:
         $ref: '#/definitions/models.ParametroEstandar'
+      PersonaExpuesta:
+        type: boolean
       PersonasACargo:
         type: boolean
       PrimerApellido:
@@ -3977,6 +2572,10 @@ definitions:
         type: string
       Profesion:
         type: string
+      RecideColombia:
+        type: boolean
+      ResponsableIva:
+        type: boolean
       SegundoApellido:
         type: string
       SegundoNombre:
@@ -3985,9 +2584,17 @@ definitions:
         type: string
       TipoDocumento:
         $ref: '#/definitions/models.ParametroEstandar'
+      ValorAfc:
+        type: number
+        format: double
+      ValorPensionVoluntaria:
+        type: number
+        format: double
       ValorUvtPrepagada:
         type: number
         format: double
+      VictimaConflicto:
+        type: boolean
   models.InformacionProveedor:
     title: InformacionProveedor
     type: object
@@ -3998,7 +2605,11 @@ definitions:
         type: string
       ClasificacionEvaluacion:
         type: string
+      Consentimiento:
+        type: boolean
       Correo:
+        type: string
+      CorreoPago:
         type: string
       Descripcion:
         type: string
@@ -4010,15 +2621,15 @@ definitions:
         type: string
       FechaUltimaModificacion:
         type: string
-      Id:
-        type: integer
-        format: int64
       IdCiudadContacto:
         type: number
         format: double
       IdEntidadBancaria:
         type: number
         format: double
+      IdProveedor:
+        type: integer
+        format: int64
       NomAsesor:
         type: string
       NomProveedor:
@@ -4026,8 +2637,7 @@ definitions:
       NumCuentaBancaria:
         type: string
       NumDocumento:
-        type: number
-        format: double
+        type: string
       PuntajeEvaluacion:
         type: number
         format: double
@@ -4047,12 +2657,12 @@ definitions:
     properties:
       Estado:
         type: boolean
-      Id:
-        type: integer
-        format: int64
       IdContratista:
         $ref: '#/definitions/models.InformacionProveedor'
-      IdSociedad:
+      IdParticipante:
+        type: integer
+        format: int64
+      IdProveedorSociedad:
         $ref: '#/definitions/models.InformacionSociedadTemporal'
       PorcentajeParticipacion:
         type: number
@@ -4064,41 +2674,43 @@ definitions:
       DigitoVerificacion:
         type: integer
         format: int64
-      DocumentoRepresentante:
-        $ref: '#/definitions/models.InformacionPersonaNatural'
-      DocumentoSuplente:
-        $ref: '#/definitions/models.InformacionPersonaNatural'
       Estado:
         type: boolean
-      Id:
+      IdProveedorSociedad:
+        $ref: '#/definitions/models.InformacionProveedor'
+      IdSociedad:
         type: integer
         format: int64
-      Identificacion:
-        type: number
-        format: double
+      Representante:
+        $ref: '#/definitions/models.InformacionProveedor'
+      RepresentanteSuplente:
+        $ref: '#/definitions/models.InformacionProveedor'
   models.InformacionSupervisor:
     title: InformacionSupervisor
     type: object
     properties:
       Estado:
         type: string
-      Id:
+      IdDependencia:
         type: integer
         format: int64
-      IdDependencia:
-        $ref: '#/definitions/models.ParametroDependencia'
       IdProveedor:
         $ref: '#/definitions/models.InformacionProveedor'
+      IdSupervisor:
+        type: integer
+        format: int64
   models.Inhabilidad:
     title: Inhabilidad
     type: object
     properties:
+      AnexoSoporte:
+        type: string
       Descripcion:
         type: string
       FechaInhabilidad:
         type: string
         format: datetime
-      Id:
+      IdInhabilidad:
         type: integer
         format: int64
       IdProveedor:
@@ -4107,115 +2719,17 @@ definitions:
         type: string
       TipoInhabilidad:
         type: string
-  models.Menu:
-    title: Menu
-    type: object
-    properties:
-      Id:
-        type: integer
-        format: int64
-      IdPagina:
-        type: number
-        format: double
-      NombreMenu:
-        type: string
-      Orden:
-        type: number
-        format: double
-      Parametros:
-        type: string
-      Rolmenu:
-        type: number
-        format: double
-      Tooltip:
-        type: string
-  models.ObjetoContratar:
-    title: ObjetoContratar
-    type: object
-    properties:
-      Cantidad:
-        type: number
-        format: double
-      Estado:
-        type: string
-      Fecharegistro:
-        type: string
-        format: datetime
-      Fechasolicitudcotizacion:
-        type: string
-        format: datetime
-      Id:
-        type: integer
-        format: int64
-      IdUnidad:
-        $ref: '#/definitions/models.Unidad'
-      NumeroCotizaciones:
-        type: number
-        format: double
-      NumeroSolicitud:
-        type: number
-        format: double
-      TipoNecesidad:
-        type: string
-      UnidadEjecutora:
-        type: number
-        format: double
-      Vigencia:
-        type: number
-        format: double
-  models.ObjetoContratarActividadCiiu:
-    title: ObjetoContratarActividadCiiu
-    type: object
-    properties:
-      Id:
-        type: integer
-        format: int64
-      IdSubclase:
-        type: string
-  models.ObjetoContratarNucleoBasico:
-    title: ObjetoContratarNucleoBasico
-    type: object
-    properties:
-      Id:
-        type: integer
-        format: int64
-      IdNucleo:
-        type: number
-        format: double
-  models.OrdenadorGasto:
-    title: OrdenadorGasto
-    type: object
-    properties:
-      CorreoOrdenador:
-        type: string
-      Estado:
-        type: number
-        format: double
-      Id:
-        type: integer
-        format: int64
-      NombreOrdenador:
-        type: string
-  models.ParametroDependencia:
-    title: ParametroDependencia
-    type: object
-    properties:
-      Correo:
-        type: string
-      Dependencia:
-        type: string
-      Id:
-        type: integer
-        format: int64
   models.ParametroEstandar:
     title: ParametroEstandar
     type: object
     properties:
+      Abreviatura:
+        type: string
       ClaseParametro:
         type: string
       DescripcionParametro:
         type: string
-      Id:
+      IdParametro:
         type: integer
         format: int64
       ValorParametro:
@@ -4230,7 +2744,7 @@ definitions:
         type: string
       Estado:
         type: string
-      Id:
+      IdNomenclatura:
         type: integer
         format: int64
       Nomenclatura:
@@ -4242,119 +2756,26 @@ definitions:
     title: ProveedorActividadCiiu
     type: object
     properties:
-      Id:
-        type: integer
-        format: int64
       IdSubclase:
         type: string
-  models.ProveedorContratoPersona:
-    title: ProveedorContratoPersona
-    type: object
-    properties:
-      Correo:
-        type: string
-      Direccion:
-        type: string
-      Fecha_registro:
-        type: string
-        format: datetime
-      Id:
-        type: integer
-        format: int64
-      Id_proveedor:
-        type: string
-      Justificacion:
-        type: string
-      Nombre_completo:
-        type: string
-      Numero_cdp:
-        type: integer
-        format: int64
-      Numero_contrato:
-        type: string
-      Numero_solicitud_necesidad:
-        type: integer
-        format: int64
-      Objeto_contrato:
-        type: string
-      Observaciones:
-        type: string
-      Ordenador_gasto:
-        type: string
-      Primer_Apellido:
-        type: string
-      Primer_Nombre:
-        type: string
-      Segundo_Apellido:
-        type: string
-      Segundo_Nombre:
-        type: string
-      Tipo_documento:
-        type: string
-      Tipo_persona:
-        type: string
-      Unidad_ejecucion:
-        type: integer
-        format: int64
-      Unidad_ejecutora:
-        type: integer
-        format: int64
-      Valor_contrato:
-        type: string
-      Vigencia_contrato:
-        type: integer
-        format: int64
+      InformacionProveedorId:
+        $ref: '#/definitions/models.InformacionProveedor'
   models.ProveedorRepresentanteLegal:
     title: ProveedorRepresentanteLegal
     type: object
     properties:
-      CorreoRepresentante:
-        type: string
-      Id:
-        type: integer
-        format: int64
+      IdProveedor:
+        $ref: '#/definitions/models.InformacionProveedor'
       IdRepresentante:
         $ref: '#/definitions/models.InformacionPersonaNatural'
-      TelefonoContacto:
-        type: number
-        format: double
   models.ProveedorTelefono:
     title: ProveedorTelefono
     type: object
     properties:
-      Id:
-        type: integer
-        format: int64
+      IdProveedor:
+        $ref: '#/definitions/models.InformacionProveedor'
       IdTelefono:
         $ref: '#/definitions/models.Telefono'
-  models.SniesArea:
-    title: SniesArea
-    type: object
-    properties:
-      Descripcion:
-        type: string
-      Estado:
-        type: string
-      Id:
-        type: integer
-        format: int64
-      Nombre:
-        type: string
-  models.SniesNucleoBasico:
-    title: SniesNucleoBasico
-    type: object
-    properties:
-      Descripcion:
-        type: string
-      Estado:
-        type: string
-      Id:
-        type: integer
-        format: int64
-      IdArea:
-        $ref: '#/definitions/models.SniesArea'
-      Nombre:
-        type: string
   models.SolicitudCotizacion:
     title: SolicitudCotizacion
     type: object
@@ -4362,28 +2783,13 @@ definitions:
       Id:
         type: integer
         format: int64
-      IdObjeto:
-        $ref: '#/definitions/models.ObjetoContratar'
-      IdProveedor:
-        $ref: '#/definitions/models.InformacionProveedor'
-  models.Supervisor:
-    title: Supervisor
-    type: object
-    properties:
-      Cedula:
-        type: number
-        format: double
-      CorreoSupervisor:
-        type: string
-      Estado:
-        type: string
-      Id:
+      Informado:
+        type: boolean
+      ObjetoCotizacion:
         type: integer
         format: int64
-      IdDependencia:
-        $ref: '#/definitions/models.ParametroDependencia'
-      NombreSupervisor:
-        type: string
+      Proveedor:
+        $ref: '#/definitions/models.InformacionProveedor'
   models.Telefono:
     title: Telefono
     type: object
@@ -4391,7 +2797,7 @@ definitions:
       Extension:
         type: number
         format: double
-      Id:
+      IdTelefono:
         type: integer
         format: int64
       NumeroTel:
@@ -4400,23 +2806,14 @@ definitions:
       Tipo:
         type: number
         format: double
-  models.TipoConformacion:
-    title: TipoConformacion
+  models.Unidad:
+    title: Unidad
     type: object
     properties:
       Descripcion:
         type: string
       Estado:
-        type: string
-      Id:
-        type: integer
-        format: int64
-      Nombre:
-        type: string
-  models.Unidad:
-    title: Unidad
-    type: object
-    properties:
+        type: boolean
       Id:
         type: integer
         format: int64
@@ -4440,15 +2837,9 @@ tags:
 - name: informacion_proveedor
   description: |
     InformacionProveedorController operations for InformacionProveedor
-- name: contrato
-  description: |
-    ContratoController operations for Contrato
 - name: informacion_sociedad_temporal
   description: |
     InformacionSociedadTemporalController operations for InformacionSociedadTemporal
-- name: menu
-  description: |
-    MenuController operations for Menu
 - name: parametro_nomenclatura_dian
   description: |
     ParametroNomenclaturaDianController operations for ParametroNomenclaturaDian
@@ -4458,30 +2849,18 @@ tags:
 - name: contrato_proveedor
   description: |
     ContratoProveedorController operations for ContratoProveedor
-- name: dependencia
-  description: |
-    DependenciaController operations for Dependencia
 - name: informacion_interventor
   description: |
     InformacionInterventorController operations for InformacionInterventor
 - name: evaluacion
   description: |
     EvaluacionController operations for Evaluacion
-- name: objeto_contratar_actividad_ciiu
-  description: |
-    ObjetoContratarActividadCiiuController operations for ObjetoContratarActividadCiiu
-- name: ordenador_gasto
-  description: |
-    OrdenadorGastoController operations for OrdenadorGasto
 - name: proveedor_actividad_ciiu
   description: |
     ProveedorActividadCiiuController operations for ProveedorActividadCiiu
 - name: solicitud_cotizacion
   description: |
     SolicitudCotizacionController operations for SolicitudCotizacion
-- name: parametro_dependencia
-  description: |
-    ParametroDependenciaController operations for ParametroDependencia
 - name: proveedor_representante_legal
   description: |
     ProveedorRepresentanteLegalController operations for ProveedorRepresentanteLegal
@@ -4491,36 +2870,15 @@ tags:
 - name: proveedor_telefono
   description: |
     ProveedorTelefonoController operations for ProveedorTelefono
-- name: snies_area
-  description: |
-    SniesAreaController operations for SniesArea
-- name: tipo_conformacion
-  description: |
-    TipoConformacionController operations for TipoConformacion
 - name: unidad
   description: |
     UnidadController operations for Unidad
-- name: objeto_contratar_nucleo_basico
-  description: |
-    ObjetoContratarNucleoBasicoController operations for ObjetoContratarNucleoBasico
 - name: informacion_supervisor
   description: |
     InformacionSupervisorController operations for InformacionSupervisor
 - name: telefono
   description: |
     TelefonoController operations for Telefono
-- name: snies_nucleo_basico
-  description: |
-    SniesNucleoBasicoController operations for SniesNucleoBasico
-- name: objeto_contratar
-  description: |
-    ObjetoContratarController operations for ObjetoContratar
 - name: informacion_sociedad_participante
   description: |
     InformacionSociedadParticipanteController operations for InformacionSociedadParticipante
-- name: supervisor
-  description: |
-    SupervisorController operations for Supervisor
-- name: proveedor_contrato_persona
-  description: |2
-     ProveedorContratoPersonaController operations for Proveedor_contrato_persona

@@ -10,10 +10,8 @@ import (
 )
 
 type ProveedorRepresentanteLegal struct {
-	Id                  int                        `orm:"column(id_proveedor);pk"`
-	IdRepresentante     *InformacionPersonaNatural `orm:"column(id_representante);rel(fk)"`
-	TelefonoContacto    float64                    `orm:"column(telefono_contacto)"`
-	CorreoRepresentante string                     `orm:"column(correo_representante)"`
+	IdProveedor     *InformacionProveedor      `orm:"column(id_proveedor);pk;rel(fk)"`
+	IdRepresentante *InformacionPersonaNatural `orm:"column(id_representante);rel(fk)"`
 }
 
 func (t *ProveedorRepresentanteLegal) TableName() string {
@@ -36,7 +34,7 @@ func AddProveedorRepresentanteLegal(m *ProveedorRepresentanteLegal) (id int64, e
 // Id doesn't exist
 func GetProveedorRepresentanteLegalById(id int) (v *ProveedorRepresentanteLegal, err error) {
 	o := orm.NewOrm()
-	v = &ProveedorRepresentanteLegal{Id: id}
+	v = &ProveedorRepresentanteLegal{IdProveedor: &InformacionProveedor{IdProveedor: id}}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
@@ -125,7 +123,7 @@ func GetAllProveedorRepresentanteLegal(query map[string]string, fields []string,
 // the record to be updated doesn't exist
 func UpdateProveedorRepresentanteLegalById(m *ProveedorRepresentanteLegal) (err error) {
 	o := orm.NewOrm()
-	v := ProveedorRepresentanteLegal{Id: m.Id}
+	v := ProveedorRepresentanteLegal{IdProveedor: m.IdProveedor}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -140,11 +138,11 @@ func UpdateProveedorRepresentanteLegalById(m *ProveedorRepresentanteLegal) (err 
 // the record to be deleted doesn't exist
 func DeleteProveedorRepresentanteLegal(id int) (err error) {
 	o := orm.NewOrm()
-	v := ProveedorRepresentanteLegal{Id: id}
+	v := ProveedorRepresentanteLegal{IdProveedor: &InformacionProveedor{IdProveedor: id}}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&ProveedorRepresentanteLegal{Id: id}); err == nil {
+		if num, err = o.Delete(&ProveedorRepresentanteLegal{IdProveedor: &InformacionProveedor{IdProveedor: id}}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}
