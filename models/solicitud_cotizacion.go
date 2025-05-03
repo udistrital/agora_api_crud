@@ -10,9 +10,10 @@ import (
 )
 
 type SolicitudCotizacion struct {
-	Id          int                   `orm:"column(id_soliciutd);pk"`
-	IdObjeto    int                   `orm:"column(id_objeto)"`
-	IdProveedor *InformacionProveedor `orm:"column(id_proveedor);rel(fk)"`
+	Id               int                   `orm:"column(id)"`
+	ObjetoCotizacion int                   `orm:"column(objeto_cotizacion)"`
+	Proveedor        *InformacionProveedor `orm:"column(proveedor);rel(fk)"`
+	Informado        bool                  `orm:"column(informado)"`
 }
 
 func (t *SolicitudCotizacion) TableName() string {

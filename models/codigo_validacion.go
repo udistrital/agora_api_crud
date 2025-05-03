@@ -11,10 +11,10 @@ import (
 )
 
 type CodigoValidacion struct {
-	Id                int       `orm:"column(id_codigo_validacion);pk"`
-	IdTabla           float64   `orm:"column(id_tabla)"`
-	TipoCertificacion float64   `orm:"column(tipo_certificacion)"`
-	Fecha             time.Time `orm:"column(fecha);type(timestamp without time zone)"`
+	IdCodigoValidacion int       `orm:"column(id_codigo_validacion);pk"`
+	IdTabla            int       `orm:"column(id_tabla)"`
+	TipoCertificacion  float64   `orm:"column(tipo_certificacion)"`
+	Fecha              time.Time `orm:"column(fecha);type(timestamp without time zone)"`
 }
 
 func (t *CodigoValidacion) TableName() string {
@@ -37,7 +37,7 @@ func AddCodigoValidacion(m *CodigoValidacion) (id int64, err error) {
 // Id doesn't exist
 func GetCodigoValidacionById(id int) (v *CodigoValidacion, err error) {
 	o := orm.NewOrm()
-	v = &CodigoValidacion{Id: id}
+	v = &CodigoValidacion{IdCodigoValidacion: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
@@ -126,7 +126,7 @@ func GetAllCodigoValidacion(query map[string]string, fields []string, sortby []s
 // the record to be updated doesn't exist
 func UpdateCodigoValidacionById(m *CodigoValidacion) (err error) {
 	o := orm.NewOrm()
-	v := CodigoValidacion{Id: m.Id}
+	v := CodigoValidacion{IdCodigoValidacion: m.IdCodigoValidacion}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -141,11 +141,11 @@ func UpdateCodigoValidacionById(m *CodigoValidacion) (err error) {
 // the record to be deleted doesn't exist
 func DeleteCodigoValidacion(id int) (err error) {
 	o := orm.NewOrm()
-	v := CodigoValidacion{Id: id}
+	v := CodigoValidacion{IdCodigoValidacion: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&CodigoValidacion{Id: id}); err == nil {
+		if num, err = o.Delete(&CodigoValidacion{IdCodigoValidacion: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}

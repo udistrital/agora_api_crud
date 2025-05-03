@@ -11,10 +11,10 @@ import (
 )
 
 type ContratoEvaluacion struct {
-	Id                 int       `orm:"column(id_contrato);pk"`
+	IdContrato         int       `orm:"column(id_contrato);pk"`
 	NumeroContrato     float64   `orm:"column(numero_contrato)"`
 	Vigencia           float64   `orm:"column(vigencia)"`
-	DocumentoEvaluador float64   `orm:"column(documento_evaluador)"`
+	DocumentoEvaluador string    `orm:"column(documento_evaluador)"`
 	FechaRegistro      time.Time `orm:"column(fecha_registro);type(date)"`
 	NumeroNecesidad    float64   `orm:"column(numero_necesidad)"`
 	Estado             string    `orm:"column(estado);null"`
@@ -41,7 +41,7 @@ func AddContratoEvaluacion(m *ContratoEvaluacion) (id int64, err error) {
 // Id doesn't exist
 func GetContratoEvaluacionById(id int) (v *ContratoEvaluacion, err error) {
 	o := orm.NewOrm()
-	v = &ContratoEvaluacion{Id: id}
+	v = &ContratoEvaluacion{IdContrato: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
@@ -130,7 +130,7 @@ func GetAllContratoEvaluacion(query map[string]string, fields []string, sortby [
 // the record to be updated doesn't exist
 func UpdateContratoEvaluacionById(m *ContratoEvaluacion) (err error) {
 	o := orm.NewOrm()
-	v := ContratoEvaluacion{Id: m.Id}
+	v := ContratoEvaluacion{IdContrato: m.IdContrato}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -145,11 +145,11 @@ func UpdateContratoEvaluacionById(m *ContratoEvaluacion) (err error) {
 // the record to be deleted doesn't exist
 func DeleteContratoEvaluacion(id int) (err error) {
 	o := orm.NewOrm()
-	v := ContratoEvaluacion{Id: id}
+	v := ContratoEvaluacion{IdContrato: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&ContratoEvaluacion{Id: id}); err == nil {
+		if num, err = o.Delete(&ContratoEvaluacion{IdContrato: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}

@@ -10,7 +10,7 @@ import (
 )
 
 type InformacionSupervisor struct {
-	Id            int                   `orm:"column(id_supervisor);pk"`
+	IdSupervisor  int                   `orm:"column(id_supervisor);pk"`
 	IdProveedor   *InformacionProveedor `orm:"column(id_proveedor);rel(fk)"`
 	IdDependencia int                   `orm:"column(id_dependencia)"`
 	Estado        string                `orm:"column(estado);null"`
@@ -36,7 +36,7 @@ func AddInformacionSupervisor(m *InformacionSupervisor) (id int64, err error) {
 // Id doesn't exist
 func GetInformacionSupervisorById(id int) (v *InformacionSupervisor, err error) {
 	o := orm.NewOrm()
-	v = &InformacionSupervisor{Id: id}
+	v = &InformacionSupervisor{IdSupervisor: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
@@ -125,7 +125,7 @@ func GetAllInformacionSupervisor(query map[string]string, fields []string, sortb
 // the record to be updated doesn't exist
 func UpdateInformacionSupervisorById(m *InformacionSupervisor) (err error) {
 	o := orm.NewOrm()
-	v := InformacionSupervisor{Id: m.Id}
+	v := InformacionSupervisor{IdSupervisor: m.IdSupervisor}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -140,11 +140,11 @@ func UpdateInformacionSupervisorById(m *InformacionSupervisor) (err error) {
 // the record to be deleted doesn't exist
 func DeleteInformacionSupervisor(id int) (err error) {
 	o := orm.NewOrm()
-	v := InformacionSupervisor{Id: id}
+	v := InformacionSupervisor{IdSupervisor: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&InformacionSupervisor{Id: id}); err == nil {
+		if num, err = o.Delete(&InformacionSupervisor{IdSupervisor: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}

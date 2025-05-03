@@ -10,8 +10,8 @@ import (
 )
 
 type ProveedorActividadCiiu struct {
-	Id         int    `orm:"column(num_documento);pk"`
-	IdSubclase string `orm:"column(id_subclase)"`
+	IdSubclase             string                `orm:"column(id_subclase)"`
+	InformacionProveedorId *InformacionProveedor `orm:"column(informacion_proveedor_id);pk;rel(fk)"`
 }
 
 func (t *ProveedorActividadCiiu) TableName() string {
@@ -34,7 +34,7 @@ func AddProveedorActividadCiiu(m *ProveedorActividadCiiu) (id int64, err error) 
 // Id doesn't exist
 func GetProveedorActividadCiiuById(id int) (v *ProveedorActividadCiiu, err error) {
 	o := orm.NewOrm()
-	v = &ProveedorActividadCiiu{Id: id}
+	v = &ProveedorActividadCiiu{InformacionProveedorId: v.InformacionProveedorId}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
@@ -123,7 +123,7 @@ func GetAllProveedorActividadCiiu(query map[string]string, fields []string, sort
 // the record to be updated doesn't exist
 func UpdateProveedorActividadCiiuById(m *ProveedorActividadCiiu) (err error) {
 	o := orm.NewOrm()
-	v := ProveedorActividadCiiu{Id: m.Id}
+	v := ProveedorActividadCiiu{InformacionProveedorId: m.InformacionProveedorId}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -138,11 +138,11 @@ func UpdateProveedorActividadCiiuById(m *ProveedorActividadCiiu) (err error) {
 // the record to be deleted doesn't exist
 func DeleteProveedorActividadCiiu(id int) (err error) {
 	o := orm.NewOrm()
-	v := ProveedorActividadCiiu{Id: id}
+	v := ProveedorActividadCiiu{InformacionProveedorId: &InformacionProveedor{IdProveedor: id}}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&ProveedorActividadCiiu{Id: id}); err == nil {
+		if num, err = o.Delete(&ProveedorActividadCiiu{InformacionProveedorId: &InformacionProveedor{IdProveedor: id}}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}

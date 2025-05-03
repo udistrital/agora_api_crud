@@ -2299,12 +2299,12 @@ definitions:
       Fecha:
         type: string
         format: datetime
-      Id:
+      IdCodigoValidacion:
         type: integer
         format: int64
       IdTabla:
-        type: number
-        format: double
+        type: integer
+        format: int64
       TipoCertificacion:
         type: number
         format: double
@@ -2313,14 +2313,13 @@ definitions:
     type: object
     properties:
       DocumentoEvaluador:
-        type: number
-        format: double
+        type: string
       Estado:
         type: string
       FechaRegistro:
         type: string
         format: datetime
-      Id:
+      IdContrato:
         type: integer
         format: int64
       NumeroContrato:
@@ -2339,14 +2338,14 @@ definitions:
     title: ContratoProveedor
     type: object
     properties:
-      Id:
-        type: integer
-        format: int64
       IdContrato:
         type: integer
         format: int64
       IdProveedor:
         $ref: '#/definitions/models.InformacionProveedor'
+      IdRelacion:
+        type: integer
+        format: int64
       Vigencia:
         type: number
         format: double
@@ -2369,10 +2368,10 @@ definitions:
         type: string
       GarantiaSatisfaccion:
         type: string
-      Id:
+      IdContrato:
         type: integer
         format: int64
-      IdContrato:
+      IdEvaluacion:
         type: integer
         format: int64
       Procedimientos:
@@ -2394,10 +2393,10 @@ definitions:
     properties:
       Estado:
         type: string
-      Id:
+      IdDependencia:
         type: integer
         format: int64
-      IdDependencia:
+      IdInterventor:
         type: integer
         format: int64
       IdProveedor:
@@ -2421,9 +2420,6 @@ definitions:
         type: boolean
       Genero:
         type: string
-      Id:
-        type: integer
-        format: int64
       IdCiudadOrigen:
         type: number
         format: double
@@ -2436,11 +2432,11 @@ definitions:
       NomProveedor:
         type: string
       NumCedulaExtranjeria:
-        type: number
-        format: double
+        type: string
+      NumNitEmpresa:
+        type: string
       NumPasaporte:
-        type: number
-        format: double
+        type: string
       ProcedenciaEmpresa:
         type: string
       Pyme:
@@ -2461,6 +2457,10 @@ definitions:
     title: InformacionPersonaNatural
     type: object
     properties:
+      Anexodeclaracion:
+        type: string
+      Anexohijos:
+        type: string
       CabezaFamilia:
         type: boolean
       Cargo:
@@ -2490,16 +2490,24 @@ definitions:
         type: string
       EstadoCivil:
         type: string
+      ExperienciaLaboral:
+        type: number
+        format: double
+      ExperienciaProfesional:
+        type: number
+        format: double
       FechaExpedicionDocumento:
+        type: string
+        format: datetime
+      FechaNacimiento:
         type: string
         format: datetime
       Genero:
         type: string
       GrupoEtnico:
         type: string
-      Id:
-        type: integer
-        format: int64
+      Hijos:
+        type: boolean
       IdArl:
         type: integer
         format: int64
@@ -2518,39 +2526,44 @@ definitions:
       IdFondoPension:
         type: integer
         format: int64
-      IdNitArl:
-        type: number
-        format: double
-      IdNitCajaCompensacion:
-        type: number
-        format: double
-      IdNitEps:
-        type: number
-        format: double
-      IdNitFondoPension:
-        type: number
-        format: double
       IdNucleoBasico:
         type: number
         format: double
       IdPaisNacimiento:
         type: number
         format: double
+      IdentidadGenero:
+        type: string
       InteresViviendaAfc:
         type: number
         format: double
       MedicinaPrepagada:
+        type: boolean
+      Migrante:
         type: boolean
       MontoCapitalAutorizado:
         type: number
         format: double
       NumCuentaBancariaAfc:
         type: string
+      NumDocumentoPersona:
+        type: string
+      NumeroHijos:
+        type: number
+        format: double
       NumeroPersonasACargo:
         type: number
         format: double
+      OrientacionSexual:
+        type: string
+      PensionVoluntaria:
+        type: boolean
+      Pensionado:
+        type: boolean
       Perfil:
         $ref: '#/definitions/models.ParametroEstandar'
+      PersonaExpuesta:
+        type: boolean
       PersonasACargo:
         type: boolean
       PrimerApellido:
@@ -2559,6 +2572,10 @@ definitions:
         type: string
       Profesion:
         type: string
+      RecideColombia:
+        type: boolean
+      ResponsableIva:
+        type: boolean
       SegundoApellido:
         type: string
       SegundoNombre:
@@ -2567,9 +2584,17 @@ definitions:
         type: string
       TipoDocumento:
         $ref: '#/definitions/models.ParametroEstandar'
+      ValorAfc:
+        type: number
+        format: double
+      ValorPensionVoluntaria:
+        type: number
+        format: double
       ValorUvtPrepagada:
         type: number
         format: double
+      VictimaConflicto:
+        type: boolean
   models.InformacionProveedor:
     title: InformacionProveedor
     type: object
@@ -2580,7 +2605,11 @@ definitions:
         type: string
       ClasificacionEvaluacion:
         type: string
+      Consentimiento:
+        type: boolean
       Correo:
+        type: string
+      CorreoPago:
         type: string
       Descripcion:
         type: string
@@ -2592,15 +2621,15 @@ definitions:
         type: string
       FechaUltimaModificacion:
         type: string
-      Id:
-        type: integer
-        format: int64
       IdCiudadContacto:
         type: number
         format: double
       IdEntidadBancaria:
         type: number
         format: double
+      IdProveedor:
+        type: integer
+        format: int64
       NomAsesor:
         type: string
       NomProveedor:
@@ -2608,8 +2637,7 @@ definitions:
       NumCuentaBancaria:
         type: string
       NumDocumento:
-        type: number
-        format: double
+        type: string
       PuntajeEvaluacion:
         type: number
         format: double
@@ -2629,12 +2657,12 @@ definitions:
     properties:
       Estado:
         type: boolean
-      Id:
-        type: integer
-        format: int64
       IdContratista:
         $ref: '#/definitions/models.InformacionProveedor'
-      IdSociedad:
+      IdParticipante:
+        type: integer
+        format: int64
+      IdProveedorSociedad:
         $ref: '#/definitions/models.InformacionSociedadTemporal'
       PorcentajeParticipacion:
         type: number
@@ -2646,42 +2674,43 @@ definitions:
       DigitoVerificacion:
         type: integer
         format: int64
-      DocumentoRepresentante:
-        $ref: '#/definitions/models.InformacionPersonaNatural'
-      DocumentoSuplente:
-        $ref: '#/definitions/models.InformacionPersonaNatural'
       Estado:
         type: boolean
-      Id:
+      IdProveedorSociedad:
+        $ref: '#/definitions/models.InformacionProveedor'
+      IdSociedad:
         type: integer
         format: int64
-      Identificacion:
-        type: number
-        format: double
+      Representante:
+        $ref: '#/definitions/models.InformacionProveedor'
+      RepresentanteSuplente:
+        $ref: '#/definitions/models.InformacionProveedor'
   models.InformacionSupervisor:
     title: InformacionSupervisor
     type: object
     properties:
       Estado:
         type: string
-      Id:
-        type: integer
-        format: int64
       IdDependencia:
         type: integer
         format: int64
       IdProveedor:
         $ref: '#/definitions/models.InformacionProveedor'
+      IdSupervisor:
+        type: integer
+        format: int64
   models.Inhabilidad:
     title: Inhabilidad
     type: object
     properties:
+      AnexoSoporte:
+        type: string
       Descripcion:
         type: string
       FechaInhabilidad:
         type: string
         format: datetime
-      Id:
+      IdInhabilidad:
         type: integer
         format: int64
       IdProveedor:
@@ -2694,11 +2723,13 @@ definitions:
     title: ParametroEstandar
     type: object
     properties:
+      Abreviatura:
+        type: string
       ClaseParametro:
         type: string
       DescripcionParametro:
         type: string
-      Id:
+      IdParametro:
         type: integer
         format: int64
       ValorParametro:
@@ -2713,7 +2744,7 @@ definitions:
         type: string
       Estado:
         type: string
-      Id:
+      IdNomenclatura:
         type: integer
         format: int64
       Nomenclatura:
@@ -2725,32 +2756,24 @@ definitions:
     title: ProveedorActividadCiiu
     type: object
     properties:
-      Id:
-        type: integer
-        format: int64
       IdSubclase:
         type: string
+      InformacionProveedorId:
+        $ref: '#/definitions/models.InformacionProveedor'
   models.ProveedorRepresentanteLegal:
     title: ProveedorRepresentanteLegal
     type: object
     properties:
-      CorreoRepresentante:
-        type: string
-      Id:
-        type: integer
-        format: int64
+      IdProveedor:
+        $ref: '#/definitions/models.InformacionProveedor'
       IdRepresentante:
         $ref: '#/definitions/models.InformacionPersonaNatural'
-      TelefonoContacto:
-        type: number
-        format: double
   models.ProveedorTelefono:
     title: ProveedorTelefono
     type: object
     properties:
-      Id:
-        type: integer
-        format: int64
+      IdProveedor:
+        $ref: '#/definitions/models.InformacionProveedor'
       IdTelefono:
         $ref: '#/definitions/models.Telefono'
   models.SolicitudCotizacion:
@@ -2760,10 +2783,12 @@ definitions:
       Id:
         type: integer
         format: int64
-      IdObjeto:
+      Informado:
+        type: boolean
+      ObjetoCotizacion:
         type: integer
         format: int64
-      IdProveedor:
+      Proveedor:
         $ref: '#/definitions/models.InformacionProveedor'
   models.Telefono:
     title: Telefono
@@ -2772,7 +2797,7 @@ definitions:
       Extension:
         type: number
         format: double
-      Id:
+      IdTelefono:
         type: integer
         format: int64
       NumeroTel:
@@ -2785,6 +2810,10 @@ definitions:
     title: Unidad
     type: object
     properties:
+      Descripcion:
+        type: string
+      Estado:
+        type: boolean
       Id:
         type: integer
         format: int64

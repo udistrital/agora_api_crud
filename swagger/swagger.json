@@ -3485,13 +3485,13 @@
                     "type": "string",
                     "format": "datetime"
                 },
-                "Id": {
+                "IdCodigoValidacion": {
                     "type": "integer",
                     "format": "int64"
                 },
                 "IdTabla": {
-                    "type": "number",
-                    "format": "double"
+                    "type": "integer",
+                    "format": "int64"
                 },
                 "TipoCertificacion": {
                     "type": "number",
@@ -3504,8 +3504,7 @@
             "type": "object",
             "properties": {
                 "DocumentoEvaluador": {
-                    "type": "number",
-                    "format": "double"
+                    "type": "string"
                 },
                 "Estado": {
                     "type": "string"
@@ -3514,7 +3513,7 @@
                     "type": "string",
                     "format": "datetime"
                 },
-                "Id": {
+                "IdContrato": {
                     "type": "integer",
                     "format": "int64"
                 },
@@ -3540,16 +3539,16 @@
             "title": "ContratoProveedor",
             "type": "object",
             "properties": {
-                "Id": {
-                    "type": "integer",
-                    "format": "int64"
-                },
                 "IdContrato": {
                     "type": "integer",
                     "format": "int64"
                 },
                 "IdProveedor": {
                     "$ref": "#/definitions/models.InformacionProveedor"
+                },
+                "IdRelacion": {
+                    "type": "integer",
+                    "format": "int64"
                 },
                 "Vigencia": {
                     "type": "number",
@@ -3583,11 +3582,11 @@
                 "GarantiaSatisfaccion": {
                     "type": "string"
                 },
-                "Id": {
+                "IdContrato": {
                     "type": "integer",
                     "format": "int64"
                 },
-                "IdContrato": {
+                "IdEvaluacion": {
                     "type": "integer",
                     "format": "int64"
                 },
@@ -3619,11 +3618,11 @@
                 "Estado": {
                     "type": "string"
                 },
-                "Id": {
+                "IdDependencia": {
                     "type": "integer",
                     "format": "int64"
                 },
-                "IdDependencia": {
+                "IdInterventor": {
                     "type": "integer",
                     "format": "int64"
                 },
@@ -3657,10 +3656,6 @@
                 "Genero": {
                     "type": "string"
                 },
-                "Id": {
-                    "type": "integer",
-                    "format": "int64"
-                },
                 "IdCiudadOrigen": {
                     "type": "number",
                     "format": "double"
@@ -3677,12 +3672,13 @@
                     "type": "string"
                 },
                 "NumCedulaExtranjeria": {
-                    "type": "number",
-                    "format": "double"
+                    "type": "string"
+                },
+                "NumNitEmpresa": {
+                    "type": "string"
                 },
                 "NumPasaporte": {
-                    "type": "number",
-                    "format": "double"
+                    "type": "string"
                 },
                 "ProcedenciaEmpresa": {
                     "type": "string"
@@ -3714,6 +3710,12 @@
             "title": "InformacionPersonaNatural",
             "type": "object",
             "properties": {
+                "Anexodeclaracion": {
+                    "type": "string"
+                },
+                "Anexohijos": {
+                    "type": "string"
+                },
                 "CabezaFamilia": {
                     "type": "boolean"
                 },
@@ -3757,7 +3759,19 @@
                 "EstadoCivil": {
                     "type": "string"
                 },
+                "ExperienciaLaboral": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "ExperienciaProfesional": {
+                    "type": "number",
+                    "format": "double"
+                },
                 "FechaExpedicionDocumento": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "FechaNacimiento": {
                     "type": "string",
                     "format": "datetime"
                 },
@@ -3767,9 +3781,8 @@
                 "GrupoEtnico": {
                     "type": "string"
                 },
-                "Id": {
-                    "type": "integer",
-                    "format": "int64"
+                "Hijos": {
+                    "type": "boolean"
                 },
                 "IdArl": {
                     "type": "integer",
@@ -3795,22 +3808,6 @@
                     "type": "integer",
                     "format": "int64"
                 },
-                "IdNitArl": {
-                    "type": "number",
-                    "format": "double"
-                },
-                "IdNitCajaCompensacion": {
-                    "type": "number",
-                    "format": "double"
-                },
-                "IdNitEps": {
-                    "type": "number",
-                    "format": "double"
-                },
-                "IdNitFondoPension": {
-                    "type": "number",
-                    "format": "double"
-                },
                 "IdNucleoBasico": {
                     "type": "number",
                     "format": "double"
@@ -3819,11 +3816,17 @@
                     "type": "number",
                     "format": "double"
                 },
+                "IdentidadGenero": {
+                    "type": "string"
+                },
                 "InteresViviendaAfc": {
                     "type": "number",
                     "format": "double"
                 },
                 "MedicinaPrepagada": {
+                    "type": "boolean"
+                },
+                "Migrante": {
                     "type": "boolean"
                 },
                 "MontoCapitalAutorizado": {
@@ -3833,12 +3836,31 @@
                 "NumCuentaBancariaAfc": {
                     "type": "string"
                 },
+                "NumDocumentoPersona": {
+                    "type": "string"
+                },
+                "NumeroHijos": {
+                    "type": "number",
+                    "format": "double"
+                },
                 "NumeroPersonasACargo": {
                     "type": "number",
                     "format": "double"
                 },
+                "OrientacionSexual": {
+                    "type": "string"
+                },
+                "PensionVoluntaria": {
+                    "type": "boolean"
+                },
+                "Pensionado": {
+                    "type": "boolean"
+                },
                 "Perfil": {
                     "$ref": "#/definitions/models.ParametroEstandar"
+                },
+                "PersonaExpuesta": {
+                    "type": "boolean"
                 },
                 "PersonasACargo": {
                     "type": "boolean"
@@ -3852,6 +3874,12 @@
                 "Profesion": {
                     "type": "string"
                 },
+                "RecideColombia": {
+                    "type": "boolean"
+                },
+                "ResponsableIva": {
+                    "type": "boolean"
+                },
                 "SegundoApellido": {
                     "type": "string"
                 },
@@ -3864,9 +3892,20 @@
                 "TipoDocumento": {
                     "$ref": "#/definitions/models.ParametroEstandar"
                 },
+                "ValorAfc": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "ValorPensionVoluntaria": {
+                    "type": "number",
+                    "format": "double"
+                },
                 "ValorUvtPrepagada": {
                     "type": "number",
                     "format": "double"
+                },
+                "VictimaConflicto": {
+                    "type": "boolean"
                 }
             }
         },
@@ -3883,7 +3922,13 @@
                 "ClasificacionEvaluacion": {
                     "type": "string"
                 },
+                "Consentimiento": {
+                    "type": "boolean"
+                },
                 "Correo": {
+                    "type": "string"
+                },
+                "CorreoPago": {
                     "type": "string"
                 },
                 "Descripcion": {
@@ -3901,10 +3946,6 @@
                 "FechaUltimaModificacion": {
                     "type": "string"
                 },
-                "Id": {
-                    "type": "integer",
-                    "format": "int64"
-                },
                 "IdCiudadContacto": {
                     "type": "number",
                     "format": "double"
@@ -3912,6 +3953,10 @@
                 "IdEntidadBancaria": {
                     "type": "number",
                     "format": "double"
+                },
+                "IdProveedor": {
+                    "type": "integer",
+                    "format": "int64"
                 },
                 "NomAsesor": {
                     "type": "string"
@@ -3923,8 +3968,7 @@
                     "type": "string"
                 },
                 "NumDocumento": {
-                    "type": "number",
-                    "format": "double"
+                    "type": "string"
                 },
                 "PuntajeEvaluacion": {
                     "type": "number",
@@ -3954,14 +3998,14 @@
                 "Estado": {
                     "type": "boolean"
                 },
-                "Id": {
-                    "type": "integer",
-                    "format": "int64"
-                },
                 "IdContratista": {
                     "$ref": "#/definitions/models.InformacionProveedor"
                 },
-                "IdSociedad": {
+                "IdParticipante": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "IdProveedorSociedad": {
                     "$ref": "#/definitions/models.InformacionSociedadTemporal"
                 },
                 "PorcentajeParticipacion": {
@@ -3978,22 +4022,21 @@
                     "type": "integer",
                     "format": "int64"
                 },
-                "DocumentoRepresentante": {
-                    "$ref": "#/definitions/models.InformacionPersonaNatural"
-                },
-                "DocumentoSuplente": {
-                    "$ref": "#/definitions/models.InformacionPersonaNatural"
-                },
                 "Estado": {
                     "type": "boolean"
                 },
-                "Id": {
+                "IdProveedorSociedad": {
+                    "$ref": "#/definitions/models.InformacionProveedor"
+                },
+                "IdSociedad": {
                     "type": "integer",
                     "format": "int64"
                 },
-                "Identificacion": {
-                    "type": "number",
-                    "format": "double"
+                "Representante": {
+                    "$ref": "#/definitions/models.InformacionProveedor"
+                },
+                "RepresentanteSuplente": {
+                    "$ref": "#/definitions/models.InformacionProveedor"
                 }
             }
         },
@@ -4004,16 +4047,16 @@
                 "Estado": {
                     "type": "string"
                 },
-                "Id": {
-                    "type": "integer",
-                    "format": "int64"
-                },
                 "IdDependencia": {
                     "type": "integer",
                     "format": "int64"
                 },
                 "IdProveedor": {
                     "$ref": "#/definitions/models.InformacionProveedor"
+                },
+                "IdSupervisor": {
+                    "type": "integer",
+                    "format": "int64"
                 }
             }
         },
@@ -4021,6 +4064,9 @@
             "title": "Inhabilidad",
             "type": "object",
             "properties": {
+                "AnexoSoporte": {
+                    "type": "string"
+                },
                 "Descripcion": {
                     "type": "string"
                 },
@@ -4028,7 +4074,7 @@
                     "type": "string",
                     "format": "datetime"
                 },
-                "Id": {
+                "IdInhabilidad": {
                     "type": "integer",
                     "format": "int64"
                 },
@@ -4047,13 +4093,16 @@
             "title": "ParametroEstandar",
             "type": "object",
             "properties": {
+                "Abreviatura": {
+                    "type": "string"
+                },
                 "ClaseParametro": {
                     "type": "string"
                 },
                 "DescripcionParametro": {
                     "type": "string"
                 },
-                "Id": {
+                "IdParametro": {
                     "type": "integer",
                     "format": "int64"
                 },
@@ -4075,7 +4124,7 @@
                 "Estado": {
                     "type": "string"
                 },
-                "Id": {
+                "IdNomenclatura": {
                     "type": "integer",
                     "format": "int64"
                 },
@@ -4092,12 +4141,11 @@
             "title": "ProveedorActividadCiiu",
             "type": "object",
             "properties": {
-                "Id": {
-                    "type": "integer",
-                    "format": "int64"
-                },
                 "IdSubclase": {
                     "type": "string"
+                },
+                "InformacionProveedorId": {
+                    "$ref": "#/definitions/models.InformacionProveedor"
                 }
             }
         },
@@ -4105,19 +4153,11 @@
             "title": "ProveedorRepresentanteLegal",
             "type": "object",
             "properties": {
-                "CorreoRepresentante": {
-                    "type": "string"
-                },
-                "Id": {
-                    "type": "integer",
-                    "format": "int64"
+                "IdProveedor": {
+                    "$ref": "#/definitions/models.InformacionProveedor"
                 },
                 "IdRepresentante": {
                     "$ref": "#/definitions/models.InformacionPersonaNatural"
-                },
-                "TelefonoContacto": {
-                    "type": "number",
-                    "format": "double"
                 }
             }
         },
@@ -4125,9 +4165,8 @@
             "title": "ProveedorTelefono",
             "type": "object",
             "properties": {
-                "Id": {
-                    "type": "integer",
-                    "format": "int64"
+                "IdProveedor": {
+                    "$ref": "#/definitions/models.InformacionProveedor"
                 },
                 "IdTelefono": {
                     "$ref": "#/definitions/models.Telefono"
@@ -4142,11 +4181,14 @@
                     "type": "integer",
                     "format": "int64"
                 },
-                "IdObjeto": {
+                "Informado": {
+                    "type": "boolean"
+                },
+                "ObjetoCotizacion": {
                     "type": "integer",
                     "format": "int64"
                 },
-                "IdProveedor": {
+                "Proveedor": {
                     "$ref": "#/definitions/models.InformacionProveedor"
                 }
             }
@@ -4159,7 +4201,7 @@
                     "type": "number",
                     "format": "double"
                 },
-                "Id": {
+                "IdTelefono": {
                     "type": "integer",
                     "format": "int64"
                 },
@@ -4177,6 +4219,12 @@
             "title": "Unidad",
             "type": "object",
             "properties": {
+                "Descripcion": {
+                    "type": "string"
+                },
+                "Estado": {
+                    "type": "boolean"
+                },
                 "Id": {
                     "type": "integer",
                     "format": "int64"

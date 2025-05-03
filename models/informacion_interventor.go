@@ -10,9 +10,9 @@ import (
 )
 
 type InformacionInterventor struct {
-	Id            int                   `orm:"column(id_interventor);pk"`
+	IdInterventor int                   `orm:"column(id_interventor);pk"`
 	IdProveedor   *InformacionProveedor `orm:"column(id_proveedor);rel(fk)"`
-	IdDependencia int                   `orm:"column(id_dependencia)"`
+	IdDependencia int                   `orm:"column(id_dependencia);null"`
 	Estado        string                `orm:"column(estado);null"`
 }
 
@@ -36,7 +36,7 @@ func AddInformacionInterventor(m *InformacionInterventor) (id int64, err error) 
 // Id doesn't exist
 func GetInformacionInterventorById(id int) (v *InformacionInterventor, err error) {
 	o := orm.NewOrm()
-	v = &InformacionInterventor{Id: id}
+	v = &InformacionInterventor{IdInterventor: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
@@ -125,7 +125,7 @@ func GetAllInformacionInterventor(query map[string]string, fields []string, sort
 // the record to be updated doesn't exist
 func UpdateInformacionInterventorById(m *InformacionInterventor) (err error) {
 	o := orm.NewOrm()
-	v := InformacionInterventor{Id: m.Id}
+	v := InformacionInterventor{IdInterventor: m.IdInterventor}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -140,11 +140,11 @@ func UpdateInformacionInterventorById(m *InformacionInterventor) (err error) {
 // the record to be deleted doesn't exist
 func DeleteInformacionInterventor(id int) (err error) {
 	o := orm.NewOrm()
-	v := InformacionInterventor{Id: id}
+	v := InformacionInterventor{IdInterventor: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&InformacionInterventor{Id: id}); err == nil {
+		if num, err = o.Delete(&InformacionInterventor{IdInterventor: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}

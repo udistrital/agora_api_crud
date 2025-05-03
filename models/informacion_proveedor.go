@@ -10,9 +10,9 @@ import (
 )
 
 type InformacionProveedor struct {
-	Id                      int                `orm:"column(id_proveedor);pk"`
+	IdProveedor             int                `orm:"column(id_proveedor);pk"`
 	Tipopersona             string             `orm:"column(tipopersona)"`
-	NumDocumento            float64            `orm:"column(num_documento)"`
+	NumDocumento            string             `orm:"column(num_documento)"`
 	IdCiudadContacto        float64            `orm:"column(id_ciudad_contacto)"`
 	Direccion               string             `orm:"column(direccion)"`
 	Correo                  string             `orm:"column(correo)"`
@@ -32,6 +32,8 @@ type InformacionProveedor struct {
 	Anexorut                string             `orm:"column(anexorut)"`
 	Anexorup                string             `orm:"column(anexorup);null"`
 	RegimenContributivo     string             `orm:"column(regimen_contributivo);null"`
+	Consentimiento          bool               `orm:"column(consentimiento);null"`
+	CorreoPago              string             `orm:"column(correo_pago);null"`
 }
 
 func (t *InformacionProveedor) TableName() string {
@@ -54,7 +56,7 @@ func AddInformacionProveedor(m *InformacionProveedor) (id int64, err error) {
 // Id doesn't exist
 func GetInformacionProveedorById(id int) (v *InformacionProveedor, err error) {
 	o := orm.NewOrm()
-	v = &InformacionProveedor{Id: id}
+	v = &InformacionProveedor{IdProveedor: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
@@ -143,7 +145,7 @@ func GetAllInformacionProveedor(query map[string]string, fields []string, sortby
 // the record to be updated doesn't exist
 func UpdateInformacionProveedorById(m *InformacionProveedor) (err error) {
 	o := orm.NewOrm()
-	v := InformacionProveedor{Id: m.Id}
+	v := InformacionProveedor{IdProveedor: m.IdProveedor}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -158,11 +160,11 @@ func UpdateInformacionProveedorById(m *InformacionProveedor) (err error) {
 // the record to be deleted doesn't exist
 func DeleteInformacionProveedor(id int) (err error) {
 	o := orm.NewOrm()
-	v := InformacionProveedor{Id: id}
+	v := InformacionProveedor{IdProveedor: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&InformacionProveedor{Id: id}); err == nil {
+		if num, err = o.Delete(&InformacionProveedor{IdProveedor: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}
