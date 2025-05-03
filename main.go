@@ -6,16 +6,43 @@ import (
 	_ "github.com/udistrital/agora_api_crud/routers"
 
 	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/logs"
 	"github.com/astaxie/beego/orm"
 	"github.com/astaxie/beego/plugins/cors"
 	_ "github.com/lib/pq"
 	apistatus "github.com/udistrital/utils_oas/apiStatusLib"
 	"github.com/udistrital/utils_oas/auditoria"
+	"github.com/udistrital/utils_oas/customerrorv2"
 	"github.com/udistrital/utils_oas/xray"
 )
 
 func init() {
-	orm.RegisterDataBase("default", "postgres", "postgres://"+beego.AppConfig.String("PGuser")+":"+url.QueryEscape(beego.AppConfig.String("PGpass"))+"@"+beego.AppConfig.String("PGhost")+":"+beego.AppConfig.String("PGport")+"/"+beego.AppConfig.String("PGdb")+"?sslmode=disable&search_path="+beego.AppConfig.String("PGschema")+"")
+	if beego.AppConfig.String("parameterStore") != "" {
+		parameterStore := "/" + beego.AppConfig.String("parameterStore") +
+			"/" + beego.AppConfig.String("appname") + "/db/"
+
+		username, err := GetPasswordFromParameterStore(parameterStore + "username")
+		if err != nil {
+			logs.Critical("Error retrieving username: %v", err)
+		}
+
+		err = beego.AppConfig.Set("PGuser", username)
+		if err != nil {
+			logs.Critical("Failed to set PGuser env var: %v", err)
+		}
+
+		password, err := GetPasswordFromParameterStore(parameterStore + "password")
+		if err != nil {
+			logs.Critical("Error retrieving password: %v", err)
+		}
+
+		err = beego.AppConfig.Set("PGpass", password)
+		if err != nil {
+			logs.Critical("Failed to set PGpass: %v", err)
+		}
+	}
+
+	orm.RegisterDataBase("default", "postgres", "postgres://"+beego.AppConfig.String("PGuser")+":"+url.QueryEscape(beego.AppConfig.String("PGpass"))+"@"+beego.AppConfig.String("PGhost")+":"+beego.AppConfig.String("PGport")+"/"+beego.AppConfig.String("PGdb")+"?sslmode=disable&search_path="+beego.AppConfig.String("PGschema"))
 }
 
 func main() {
@@ -39,5 +66,6 @@ func main() {
 	xray.InitXRay()
 	apistatus.Init()
 	auditoria.InitMiddleware()
+	beego.ErrorController(&customerrorv2.CustomErrorController{})
 	beego.Run()
 }
