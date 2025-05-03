@@ -10,10 +10,10 @@ import (
 )
 
 type Telefono struct {
-	Id        int     `orm:"column(id_telefono);pk"`
-	NumeroTel float64 `orm:"column(numero_tel)"`
-	Extension float64 `orm:"column(extension);null"`
-	Tipo      float64 `orm:"column(tipo)"`
+	IdTelefono int     `orm:"column(id_telefono);pk"`
+	NumeroTel  float64 `orm:"column(numero_tel)"`
+	Extension  float64 `orm:"column(extension);null"`
+	Tipo       float64 `orm:"column(tipo)"`
 }
 
 func (t *Telefono) TableName() string {
@@ -36,7 +36,7 @@ func AddTelefono(m *Telefono) (id int64, err error) {
 // Id doesn't exist
 func GetTelefonoById(id int) (v *Telefono, err error) {
 	o := orm.NewOrm()
-	v = &Telefono{Id: id}
+	v = &Telefono{IdTelefono: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
@@ -125,7 +125,7 @@ func GetAllTelefono(query map[string]string, fields []string, sortby []string, o
 // the record to be updated doesn't exist
 func UpdateTelefonoById(m *Telefono) (err error) {
 	o := orm.NewOrm()
-	v := Telefono{Id: m.Id}
+	v := Telefono{IdTelefono: m.IdTelefono}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -140,11 +140,11 @@ func UpdateTelefonoById(m *Telefono) (err error) {
 // the record to be deleted doesn't exist
 func DeleteTelefono(id int) (err error) {
 	o := orm.NewOrm()
-	v := Telefono{Id: id}
+	v := Telefono{IdTelefono: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&Telefono{Id: id}); err == nil {
+		if num, err = o.Delete(&Telefono{IdTelefono: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}

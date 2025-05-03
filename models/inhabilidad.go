@@ -11,12 +11,13 @@ import (
 )
 
 type Inhabilidad struct {
-	Id                int                   `orm:"column(id_inhabilidad);pk"`
+	IdInhabilidad     int                   `orm:"column(id_inhabilidad);pk"`
 	IdProveedor       *InformacionProveedor `orm:"column(id_proveedor);rel(fk)"`
 	TipoInhabilidad   string                `orm:"column(tipo_inhabilidad)"`
 	TiempoInhabilidad string                `orm:"column(tiempo_inhabilidad)"`
 	FechaInhabilidad  time.Time             `orm:"column(fecha_inhabilidad);type(date)"`
 	Descripcion       string                `orm:"column(descripcion)"`
+	AnexoSoporte      string                `orm:"column(anexo_soporte);null"`
 }
 
 func (t *Inhabilidad) TableName() string {
@@ -39,7 +40,7 @@ func AddInhabilidad(m *Inhabilidad) (id int64, err error) {
 // Id doesn't exist
 func GetInhabilidadById(id int) (v *Inhabilidad, err error) {
 	o := orm.NewOrm()
-	v = &Inhabilidad{Id: id}
+	v = &Inhabilidad{IdInhabilidad: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
@@ -128,7 +129,7 @@ func GetAllInhabilidad(query map[string]string, fields []string, sortby []string
 // the record to be updated doesn't exist
 func UpdateInhabilidadById(m *Inhabilidad) (err error) {
 	o := orm.NewOrm()
-	v := Inhabilidad{Id: m.Id}
+	v := Inhabilidad{IdInhabilidad: m.IdInhabilidad}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -143,11 +144,11 @@ func UpdateInhabilidadById(m *Inhabilidad) (err error) {
 // the record to be deleted doesn't exist
 func DeleteInhabilidad(id int) (err error) {
 	o := orm.NewOrm()
-	v := Inhabilidad{Id: id}
+	v := Inhabilidad{IdInhabilidad: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&Inhabilidad{Id: id}); err == nil {
+		if num, err = o.Delete(&Inhabilidad{IdInhabilidad: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}

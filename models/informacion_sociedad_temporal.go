@@ -10,12 +10,12 @@ import (
 )
 
 type InformacionSociedadTemporal struct {
-	Id                     int                        `orm:"column(id_proveedor_sociedad);pk"`
-	Identificacion         float64                    `orm:"column(identificacion);null"`
-	DigitoVerificacion     int                        `orm:"column(digito_verificacion);null"`
-	DocumentoRepresentante *InformacionPersonaNatural `orm:"column(documento_representante);rel(fk)"`
-	DocumentoSuplente      *InformacionPersonaNatural `orm:"column(documento_suplente);rel(fk)"`
-	Estado                 bool                       `orm:"column(estado);null"`
+	IdSociedad            int                   `orm:"column(id_sociedad);pk"`
+	IdProveedorSociedad   *InformacionProveedor `orm:"column(id_proveedor_sociedad);rel(fk)"`
+	DigitoVerificacion    int                   `orm:"column(digito_verificacion);null"`
+	Representante         *InformacionProveedor `orm:"column(representante);rel(fk)"`
+	RepresentanteSuplente *InformacionProveedor `orm:"column(representante_suplente);rel(fk)"`
+	Estado                bool                  `orm:"column(estado);null"`
 }
 
 func (t *InformacionSociedadTemporal) TableName() string {
@@ -38,7 +38,7 @@ func AddInformacionSociedadTemporal(m *InformacionSociedadTemporal) (id int64, e
 // Id doesn't exist
 func GetInformacionSociedadTemporalById(id int) (v *InformacionSociedadTemporal, err error) {
 	o := orm.NewOrm()
-	v = &InformacionSociedadTemporal{Id: id}
+	v = &InformacionSociedadTemporal{IdSociedad: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
@@ -127,7 +127,7 @@ func GetAllInformacionSociedadTemporal(query map[string]string, fields []string,
 // the record to be updated doesn't exist
 func UpdateInformacionSociedadTemporalById(m *InformacionSociedadTemporal) (err error) {
 	o := orm.NewOrm()
-	v := InformacionSociedadTemporal{Id: m.Id}
+	v := InformacionSociedadTemporal{IdSociedad: m.IdSociedad}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -142,11 +142,11 @@ func UpdateInformacionSociedadTemporalById(m *InformacionSociedadTemporal) (err 
 // the record to be deleted doesn't exist
 func DeleteInformacionSociedadTemporal(id int) (err error) {
 	o := orm.NewOrm()
-	v := InformacionSociedadTemporal{Id: id}
+	v := InformacionSociedadTemporal{IdSociedad: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&InformacionSociedadTemporal{Id: id}); err == nil {
+		if num, err = o.Delete(&InformacionSociedadTemporal{IdSociedad: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}
