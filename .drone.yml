@@ -71,9 +71,6 @@ steps:
     aws_secret_access_key:
       from_secret: AWS_SECRET_ACCESS_KEY
     image_tag: release
-  environment:
-    ECR_BASE_ARN:
-      from_secret: ECR_BASE_ARN
   when:
     branch:
       - release/*
