@@ -1,5 +1,4 @@
-#!/usr/bin/env bash
-set -e
-set -u
+#!/bin/sh
+set -eu
 set -o pipefail
 exec ./main "$@"
