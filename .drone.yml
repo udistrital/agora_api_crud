@@ -66,9 +66,9 @@ steps:
     service: ${DRONE_REPO_NAME}_test
     aws_region:
       from_secret: AWS_REGION
-    aws_access_key_id:
+    AWS_ACCESS_KEY_ID:
       from_secret: AWS_ACCESS_KEY_ID
-    aws_secret_access_key:
+    AWS_SECRET_ACCESS_KEY:
       from_secret: AWS_SECRET_ACCESS_KEY
     image_tag: release
   environment:
