@@ -1,4 +1,4 @@
-FROM python:3
+FROM alpine:latest
 WORKDIR /
 COPY entrypoint.sh entrypoint.sh
 COPY main main
