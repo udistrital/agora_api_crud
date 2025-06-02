@@ -67,10 +67,13 @@ steps:
     aws_region:
       from_secret: AWS_REGION
     aws_access_key_id:
-      from_secret: aws_access_key_id
+      from_secret: AWS_ACCESS_KEY_ID
     aws_secret_access_key:
-      from_secret: aws_secret_access_key
+      from_secret: AWS_SECRET_ACCESS_KEY
     image_tag: release
+  environment:
+    ECR_BASE_ARN:
+      from_secret: ECR_BASE_ARN
   when:
     branch:
       - release/*
@@ -82,7 +85,7 @@ steps:
   settings:
     cluster: oas
     service: ${DRONE_REPO_NAME}_prod
-    region:
+    aws_region:
       from_secret: AWS_REGION
     aws_access_key_id:
       from_secret: AWS_ACCESS_KEY_ID
