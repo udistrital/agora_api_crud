@@ -13,6 +13,7 @@ import (
 	apistatus "github.com/udistrital/utils_oas/apiStatusLib"
 	"github.com/udistrital/utils_oas/auditoria"
 	"github.com/udistrital/utils_oas/customerrorv2"
+	"github.com/udistrital/utils_oas/ssm"
 	"github.com/udistrital/utils_oas/xray"
 )
 
@@ -21,7 +22,7 @@ func init() {
 		parameterStore := "/" + beego.AppConfig.String("parameterStore") +
 			"/" + beego.AppConfig.String("appname") + "/db/"
 
-		username, err := GetPasswordFromParameterStore(parameterStore + "username")
+		username, err := ssm.GetParameterFromParameterStore(parameterStore + "username")
 		if err != nil {
 			logs.Critical("Error retrieving username: %v", err)
 		}
@@ -31,7 +32,7 @@ func init() {
 			logs.Critical("Failed to set PGuser env var: %v", err)
 		}
 
-		password, err := GetPasswordFromParameterStore(parameterStore + "password")
+		password, err := ssm.GetParameterFromParameterStore(parameterStore + "password")
 		if err != nil {
 			logs.Critical("Error retrieving password: %v", err)
 		}
