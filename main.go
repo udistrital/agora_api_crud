@@ -1,11 +1,13 @@
 package main
 
 import (
+	"fmt"
 	"net/url"
 
 	_ "github.com/udistrital/agora_api_crud/routers"
 
 	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/context"
 	"github.com/astaxie/beego/logs"
 	"github.com/astaxie/beego/orm"
 	"github.com/astaxie/beego/plugins/cors"
@@ -68,5 +70,21 @@ func main() {
 	apistatus.Init()
 	auditoria.InitMiddleware()
 	beego.ErrorController(&customerrorv2.CustomErrorController{})
+	beego.InsertFilter("*", beego.BeforeExec, SecurityHeaders)
 	beego.Run()
+}
+
+func SecurityHeaders(ctx *context.Context) {
+	fmt.Println("headers set")
+	ctx.Output.Header("Clear-Site-Data", "'cache', 'cookies', 'storage', 'executionContexts'")
+	ctx.Output.Header("Cross-Origin-Embedder-Policy", "require-corp")
+	ctx.Output.Header("Cross-Origin-Opener-Policy", "same-origin")
+	ctx.Output.Header("Cross-Origin-Resource-Policy", "same-origin")
+	ctx.Output.Header("Permissions-Policy", "geolocation=(), microphone=(), camera=()")
+	ctx.Output.Header("Referrer-Policy", "no-referrer")
+	ctx.Output.Header("Server", "")
+	ctx.Output.Header("Strict-Transport-Security", "max-age=31536000; includeSubDomains")
+	ctx.Output.Header("X-Content-Type-Options", "nosniff")
+	ctx.Output.Header("X-Frame-Options", "DENY")
+	ctx.Output.Header("X-Permitted-Cross-Domain-Policies", "none")
 }
