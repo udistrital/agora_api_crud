@@ -13,6 +13,7 @@ import (
 	apistatus "github.com/udistrital/utils_oas/apiStatusLib"
 	"github.com/udistrital/utils_oas/auditoria"
 	"github.com/udistrital/utils_oas/customerrorv2"
+	"github.com/udistrital/utils_oas/security"
 	"github.com/udistrital/utils_oas/ssm"
 	"github.com/udistrital/utils_oas/xray"
 )
@@ -68,5 +69,6 @@ func main() {
 	apistatus.Init()
 	auditoria.InitMiddleware()
 	beego.ErrorController(&customerrorv2.CustomErrorController{})
+	beego.InsertFilter("*", beego.BeforeExec, security.SecurityHeaders)
 	beego.Run()
 }
