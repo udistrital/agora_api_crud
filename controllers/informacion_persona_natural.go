@@ -1,9 +1,9 @@
 package controllers
 
 import (
-	"github.com/udistrital/agora_api_crud/models"
 	"encoding/json"
 	"errors"
+	"github.com/udistrital/agora_api_crud/models"
 	"strings"
 
 	"github.com/astaxie/beego"
