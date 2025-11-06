@@ -1,8 +1,6 @@
 package main
 
 import (
-	"net/url"
-
 	_ "github.com/udistrital/agora_api_crud/routers"
 
 	"github.com/astaxie/beego"
@@ -13,41 +11,24 @@ import (
 	apistatus "github.com/udistrital/utils_oas/apiStatusLib"
 	"github.com/udistrital/utils_oas/auditoria"
 	"github.com/udistrital/utils_oas/customerrorv2"
+	"github.com/udistrital/utils_oas/database"
 	"github.com/udistrital/utils_oas/security"
-	"github.com/udistrital/utils_oas/ssm"
 	"github.com/udistrital/utils_oas/xray"
 )
 
-func init() {
-	if beego.AppConfig.String("parameterStore") != "" {
-		parameterStore := "/" + beego.AppConfig.String("parameterStore") +
-			"/" + beego.AppConfig.String("appname") + "/db/"
-
-		username, err := ssm.GetParameterFromParameterStore(parameterStore + "username")
-		if err != nil {
-			logs.Critical("Error retrieving username: %v", err)
-		}
-
-		err = beego.AppConfig.Set("PGuser", username)
-		if err != nil {
-			logs.Critical("Failed to set PGuser env var: %v", err)
-		}
-
-		password, err := ssm.GetParameterFromParameterStore(parameterStore + "password")
-		if err != nil {
-			logs.Critical("Error retrieving password: %v", err)
-		}
-
-		err = beego.AppConfig.Set("PGpass", password)
-		if err != nil {
-			logs.Critical("Failed to set PGpass: %v", err)
-		}
+func main() {
+	conn, err := database.BuildPostgresConnectionString()
+	if err != nil {
+		logs.Error("error consultando la cadena de conexión: %v", err)
+		return
 	}
 
-	orm.RegisterDataBase("default", "postgres", "postgres://"+beego.AppConfig.String("PGuser")+":"+url.QueryEscape(beego.AppConfig.String("PGpass"))+"@"+beego.AppConfig.String("PGhost")+":"+beego.AppConfig.String("PGport")+"/"+beego.AppConfig.String("PGdb")+"?sslmode=disable&search_path="+beego.AppConfig.String("PGschema"))
-}
+	err = orm.RegisterDataBase("default", "postgres", conn)
+	if err != nil {
+		logs.Error("error al conectarse a la base de datos: %v", err)
+		return
+	}
 
-func main() {
 	if beego.BConfig.RunMode == "dev" {
 		beego.BConfig.WebConfig.DirectoryIndex = true
 		beego.BConfig.WebConfig.StaticDir["/swagger"] = "swagger"
@@ -65,10 +46,14 @@ func main() {
 		ExposeHeaders:    []string{"Content-Length"},
 		AllowCredentials: true,
 	}))
-	xray.InitXRay()
+
+	err = xray.InitXRay()
+	if err != nil {
+		logs.Error("error configurando AWS XRay: %v", err)
+	}
 	apistatus.Init()
 	auditoria.InitMiddleware()
 	beego.ErrorController(&customerrorv2.CustomErrorController{})
-	beego.InsertFilter("*", beego.BeforeExec, security.SecurityHeaders)
+	security.SetSecurityHeaders()
 	beego.Run()
 }
